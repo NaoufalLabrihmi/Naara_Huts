@@ -80,27 +80,6 @@ class LoginController extends Controller
                 $data['message']        = 'fail Login';
                 return response()->json($data);
             }
-
-            //     /** last login updage*/
-            //     $lastUpdate = [
-            //         'last_login' => Carbon::now(),
-            //     ];
-            //     User::where('email', $email)->update($lastUpdate);
-
-            //     /** get session */
-            //     $user = Auth::User();
-            //     Session::put('name', $user->name);
-            //     Session::put('email', $user->email);
-            //     Session::put('user_id', $user->user_id);
-            //     Session::put('join_date', $user->join_date);
-            //     Session::put('last_login', $user->last_login);
-            //     Session::put('phone_number', $user->phone_number);
-            //     Session::put('status', $user->status);
-            //     Session::put('role_name', $user->role_name);
-            //     Session::put('avatar', $user->avatar);
-            //     Session::put('position', $user->position);
-            //     Session::put('department', $user->department);
-            //     $accessToken = $user->createToken($user->email)->accessToken;
         } catch (\Exception $e) {
             \Log::info($e);
             DB::rollback();
