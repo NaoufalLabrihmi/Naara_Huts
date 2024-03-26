@@ -31,8 +31,8 @@
                             </div>
                         </div>
                         <div class="fv-row mb-10">
-                            <label class="form-label fs-6 fw-bold text-dark">Email</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" name="email" placeholder="Enter email" autocomplete="off">
+                            <label class="form-label fs-6 fw-bold text-dark">Email / Phone</label>
+                            <input class="form-control form-control-lg form-control-solid" type="text" name="email_phone" placeholder="Enter email or phone" autocomplete="off">
                         </div>
                         <div class="fv-row mb-10">
                             <div class="d-flex flex-stack mb-2">
@@ -72,6 +72,7 @@
 </div>
 @section('script')
 
+
 <script>
     // Class definition
     var KHSigninGeneral = function() {
@@ -85,14 +86,10 @@
             // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
             validator = FormValidation.formValidation(form, {
                 fields: {
-                    'email': {
+                    'email_phone': {
                         validators: {
-                            regexp: {
-                                regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
-                            },
                             notEmpty: {
-                                message: 'Email address is required'
+                                message: 'Email or phone is required'
                             }
                         }
                     },
@@ -210,6 +207,7 @@
         KHSigninGeneral.init();
     });
 </script>
+
 
 @endsection
 @endsection
