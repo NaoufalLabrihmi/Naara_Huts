@@ -35,7 +35,8 @@ function hover_show($route)
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
 
 // Route::group(['middleware' => 'auth'], function () {
 //     Route::get('home', function () {
