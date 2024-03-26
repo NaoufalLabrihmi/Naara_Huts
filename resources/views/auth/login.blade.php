@@ -20,7 +20,7 @@
         <div class="d-flex flex-column flex-lg-row-fluid py-10">
             <div class="d-flex flex-center flex-column flex-column-fluid">
                 <div class="w-lg-500px p-10 p-lg-15 mx-auto">
-                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="/">
+                    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="">
                         <div class="text-center mb-10">
                             <h1 class="text-dark mb-3">Sign In</h1>
                             <div class="text-gray-400 fw-semibold fs-4">
@@ -155,8 +155,9 @@
                                             confirmButton: "btn btn-primary"
                                         },
                                     }).then(function(success) {
-                                        var redirectUrl = form.getAttribute('data-kt-redirect-url');
+                                        var redirectUrl = response.url;
                                         if (redirectUrl) {
+                                            document.getElementById('kt_sign_in_form').setAttribute('data-kt-redirect-url', redirectUrl);
                                             location.href = redirectUrl;
                                         }
                                     });

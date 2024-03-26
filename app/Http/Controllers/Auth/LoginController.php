@@ -68,10 +68,16 @@ class LoginController extends Controller
             $password  = $request->password;
 
             if (Auth::attempt(['email' => $email, 'password' => $password], $request->remember)) {
+                $user = Auth::user();
                 $data = [];
                 $data['response_code']  = '200';
                 $data['status']         = 'success';
                 $data['message']        = 'success Login';
+                if ($user->role === 'admin') {
+                    $data['url']        = '/admin/admin_dahsboard';
+                } elseif ($user->role === 'user') {
+                    $data['url']        = '/';
+                }
                 return response()->json($data);
             } else {
                 $data = [];
