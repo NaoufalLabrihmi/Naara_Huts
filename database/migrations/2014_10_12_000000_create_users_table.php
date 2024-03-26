@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'reception', 'user'])->default('user');
             $table->enum('status', ['active', 'inactive'])->dafault('active');
             $table->string('join_date')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone')->nullable()->unique();
             $table->string('photo')->nullable();
             $table->text('address')->nullable();
             $table->rememberToken();
