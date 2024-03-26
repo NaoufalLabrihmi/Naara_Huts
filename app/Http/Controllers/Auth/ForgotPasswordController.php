@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use DB;
-use Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -45,9 +45,10 @@ class ForgotPasswordController extends Controller
             ];
             DB::table('password_resets')->insert($passwordReset);
 
-            Mail::send('auth.verify',['token' => $token], function($message) use ($request,$email) {
+            Mail::send('auth.verify', ['token' => $token], function ($message) use ($request, $email) {
                 $message->from($request->email);
-                $message->to($email); /** input your email to send */
+                $message->to($email);
+                /** input your email to send */
                 $message->subject('Reset Password Notification');
             });
 
@@ -56,7 +57,7 @@ class ForgotPasswordController extends Controller
             $data['status']         = 'success';
             $data['message']        = 'success Post Email';
             return response()->json($data);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             \Log::info($e);
             DB::rollback();
             $data = [];

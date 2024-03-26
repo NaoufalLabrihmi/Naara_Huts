@@ -12533,7 +12533,7 @@ fieldset:disabled .btn {
 
 .bg-primary {
     --bs-bg-opacity: 1;
-    background: linear-gradient(to right, #ff0000, #ff8c33); /* Adjust colors as needed */
+    background: linear-gradient(to right, red, #1e1e2d); /* Adjust colors as needed */
 }
 
 .bg-secondary {
@@ -41089,7 +41089,7 @@ h6,
 }
 
 .btn.btn-primary {
-    background: linear-gradient(to right, red, #ff8c33); /* Adjust colors as needed */
+    background: linear-gradient(to right, red, #1e1e2d); /* Adjust colors as needed */
 }
 
 .btn.btn-primary i,
