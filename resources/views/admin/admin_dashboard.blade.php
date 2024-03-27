@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="backend/assets/images/favicon-32x32.png" type="image/png" />
-    <!--plugins-->{{ URL::to('backend/assets/css/style.bundle.css') }}
+    <!--plugins-->
     <link href="{{URL::to('backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
     <link href="{{URL::to('backend/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet')}}" />
     <link href="{{URL::to('backend/backend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
