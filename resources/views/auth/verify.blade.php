@@ -8,18 +8,15 @@
     }
 </style>
 
-<div
-    style="font-family:Arial,Helvetica,sans-serif; line-height: 1.5; font-weight: normal; font-size: 15px; color: #2F3044; min-height: 100%; margin:0; padding:0; width:100%; background-color:#edf2f7">
-    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
-        style="border-collapse:collapse;margin:0 auto; padding:0; max-width:600px">
+<div style="font-family:Arial,Helvetica,sans-serif; line-height: 1.5; font-weight: normal; font-size: 15px; color: #2F3044; min-height: 100%; margin:0; padding:0; width:100%; background-color:#edf2f7">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;margin:0 auto; padding:0; max-width:600px">
         <tbody>
             <tr>
-                
+
             </tr>
             <tr>
                 <td align="left" valign="center">
-                    <div
-                        style="text-align:left; margin: 0 20px; padding: 40px; background-color:#ffffff; border-radius: 6px">
+                    <div style="text-align:left; margin: 0 20px; padding: 40px; background-color:#ffffff; border-radius: 6px">
                         <!--begin:Email content-->
                         <div style="padding-bottom: 30px; font-size: 17px;">
                             <strong>Welcome !</strong>
@@ -48,16 +45,15 @@
                         <!--end:Email content-->
                         <div style="padding-bottom: 10px">
                             Kind regards,<br>
-                            The Hackerman007.
+                            THE CAMP.
                         </div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td align="center" valign="center"
-                    style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
-                    <p> #248, Preah Monivong Blvd. (Street 110),Phnom Phenh</p>
-                    <p> Copyright &copy; <a rel="noopener" target="_blank">Dank.777</a>.
+                <td align="center" valign="center" style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
+                    <p> Camp family </p>
+                    <p> Copyright &copy; <a rel="noopener" target="_blank">Naoufal Labrihmi</a>.
                     </p>
                 </td>
             </tr>
