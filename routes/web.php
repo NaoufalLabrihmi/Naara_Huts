@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 
@@ -24,6 +25,8 @@ function hover_show($route)
     return Request::path() == $route ? 'hover show' : '';
 }
 
+Route::get('/', [UserController::class, 'Index']);
+
 /** for side bar menu active */
 // function set_active($route)
 // {
@@ -33,9 +36,9 @@ function hover_show($route)
 //     return Request::path() == $route ? 'active' : '';
 // }
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
 
 // Route::group(['middleware' => 'auth'], function () {
