@@ -18,7 +18,7 @@
     <!-- Bootstrap CSS -->
     <link href="{{URL::to('backend/assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{URL::to('backend/assets/css/bootstrap-extended.css')}}" rel="stylesheet">
-    <link href="{{URL::to('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="{{URL::to('backend/assets/css/app.css')}}" rel="stylesheet">
     <link href="{{URL::to('backend/assets/css/icons.css')}}" rel="stylesheet">
     <!-- Theme Style CSS -->
@@ -27,7 +27,12 @@
     <link rel="stylesheet" href="{{URL::to('backend/assets/css/header-colors.css')}}" />
     <!-- toastr css -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <!-- datatable css -->
+    <link href="{{URL::to('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+
     <title> Admin Dashboard </title>
+
+
 </head>
 
 <body>
@@ -106,6 +111,16 @@
         }
         @endif
     </script>
+    <!-- datatable js -->
+    <script src="{{URL::to('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::to('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <!-- End datatable js -->
+
 </body>
 
 </html>
