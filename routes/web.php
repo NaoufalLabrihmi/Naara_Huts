@@ -50,6 +50,15 @@ Route::get('/', [UserController::class, 'Index']);
 //     });
 // });
 
+Route::get('/dashboard', function () {
+    return view('frontend.dashboard.user_dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [UserController::class, 'UserProfile'])->name('user.profile');
+    Route::post('/profile/store', [UserController::class, 'UserStore'])->name('profile.store');
+});
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 

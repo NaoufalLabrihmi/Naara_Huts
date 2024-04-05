@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{URL::to('backend/assets/css/header-colors.css')}}" />
     <!-- toastr css -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <title> Admin Dashboard </title>
 </head>
 
 <body>
