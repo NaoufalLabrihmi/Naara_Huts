@@ -56,7 +56,7 @@
                                         <h6 class="mb-0">Photo</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="file" name="image" id="formFile" class="form-control" id="image">
+                                        <input type="file" name="image" id="formFile" class="form-control">
                                     </div>
                                 </div>
 
@@ -65,10 +65,9 @@
                                         <h6 class="mb-0"> </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage" src="{{ url('upload/no_image.png')}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                                        <img id="showImage" src="{{ asset('upload/no_image.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
                                     </div>
                                 </div>
-
 
                                 <div class="row">
                                     <div class="col-sm-3"></div>
@@ -83,19 +82,18 @@
             </div>
         </div>
     </div>
-</div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#formFile').change(function(e) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files[0]);
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#formFile').change(function() {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            });
         });
-    });
-</script>
+    </script>
 
 
-@endsection
+    @endsection

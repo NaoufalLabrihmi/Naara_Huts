@@ -23,8 +23,11 @@
 
                 <div class="col-lg-8">
                     <div class="card">
-                        <form action="{{ route('team.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('team.update')}}" method="post" enctype="multipart/form-data">
                             @csrf
+
+                            <input type="hidden" name="id" value="{{ $team->id }}">
+
                             <div class="card-body">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -39,7 +42,7 @@
                                         <h6 class="mb-0">Position</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="position" class="form-control" />
+                                        <input type="text" name="position" class="form-control" value="{{$team->position}}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -47,7 +50,7 @@
                                         <h6 class="mb-0">Facebook</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="facebook" class="form-control" />
+                                        <input type="text" name="facebook" class="form-control" value="{{$team->facebook}}" />
                                     </div>
                                 </div>
 
@@ -56,7 +59,7 @@
                                         <h6 class="mb-0">Photo</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="file" name="image" id="formFile" class="form-control" id="image">
+                                        <input type="file" name="image" id="formFile" class="form-control">
                                     </div>
                                 </div>
 
@@ -65,7 +68,7 @@
                                         <h6 class="mb-0"> </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage" src="{{ url('upload/no_image.png')}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                                        <img id="showImage" src="{{ asset($team->image) }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
                                     </div>
                                 </div>
 
@@ -87,12 +90,12 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#formFile').change(function(e) {
+        $('#formFile').change(function() {
             var reader = new FileReader();
             reader.onload = function(e) {
                 $('#showImage').attr('src', e.target.result);
             }
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(this.files[0]);
         });
     });
 </script>
