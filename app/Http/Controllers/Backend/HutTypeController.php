@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hut;
 use App\Models\HutType;
 use Illuminate\Http\Request;
 use Intervention\Image\Laravel\Facades\Image;
@@ -23,9 +24,13 @@ class HutTypeController extends Controller
 
     public function HutTypeStore(Request $request)
     {
-        HutType::insert([
+        $huttype_id = HutType::insertGetId([
             'name' => $request->name,
             'created_at' => Carbon::now(),
+        ]);
+
+        Hut::insert([
+            'huttype_id' => $huttype_id,
         ]);
 
         $notification = array(
