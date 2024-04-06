@@ -32,5 +32,6 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Book Area all Route
     Route::controller(BookController::class)->group(function () {
         Route::get('/book/area', 'BookArea')->name('book.area');
+        Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');
     });
 });

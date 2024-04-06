@@ -23,15 +23,16 @@
 
                 <div class="col-lg-8">
                     <div class="card">
-                        <form id="myForm" action="{{ route('team.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('book.area.update')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{$book->id}}">
                             <div class="card-body">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Short Title</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="short_title" class="form-control" />
+                                        <input type="text" name="short_title" class="form-control" value="{{ $book->short_title }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -39,7 +40,7 @@
                                         <h6 class="mb-0">Main Title</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="main_title" class="form-control" />
+                                        <input type="text" name="main_title" class="form-control" value="{{ $book->main_title }}" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -47,7 +48,7 @@
                                         <h6 class="mb-0">Short Description</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <textarea class="form-control" id="input40" name="short_desc" rows="3" placeholder="Description"></textarea>
+                                        <textarea class="form-control" id="input40" name="short_desc" rows="3" placeholder="Description">{{ $book->short_desc }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -55,7 +56,7 @@
                                         <h6 class="mb-0">Link Url</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="link_url" class="form-control" />
+                                        <input type="text" name="link_url" class="form-control" value="{{ $book->link_url }}" />
                                     </div>
                                 </div>
 
@@ -73,7 +74,7 @@
                                         <h6 class="mb-0"> </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage" src="{{ asset('upload/no_image.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                                        <img id="showImage" src="{{ asset($book->image) }}" alt="Admin" class="rounded-3" width="80">
                                     </div>
                                 </div>
 
