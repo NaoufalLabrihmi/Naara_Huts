@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BookController;
+use App\Http\Controllers\Backend\HutTypeController;
 use App\Http\Controllers\Backend\TeamController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
@@ -33,5 +34,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::controller(BookController::class)->group(function () {
         Route::get('/book/area', 'BookArea')->name('book.area');
         Route::post('/book/area/update', 'BookAreaUpdate')->name('book.area.update');
+    });
+
+    //HutType all Route
+    Route::controller(HutTypeController::class)->group(function () {
+        Route::get('/hut/type/list', 'HutTypeList')->name('hut.type.list');
+        Route::get('/add/hut/type', 'AddHutType')->name('add.hut.type');
+        Route::post('/hut/type/store', 'HutTypeStore')->name('hut.type.store');
     });
 });
