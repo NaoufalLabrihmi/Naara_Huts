@@ -30,29 +30,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($allData as $key=> $item)
-
-                        @php
-                        $huts = App\Models\Hut::where('huttype_id',$item->id)->get();
-                        @endphp
-
+                        @foreach ($allData as $key => $item)
                         <tr>
-                            <td>{{ $key+1 }}</td>
+                            <td>{{ $key + 1 }}</td>
                             <td><img src="{{ (!empty($item->hut->image)) ? url('upload/hutimg/'.$item->hut->image) : url('upload/no_img.jpg') }}" alt="" style="width: 50px; height:30px;" </td>
                             <td>{{ $item->name }}</td>
                             <td>
-                                <a href=" {{ route('edit.team',$item->id) }}" class="btn btn-warning rounded-pill px-4 mx-1">Edit</a>
-                                <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
+                                @php
+                                $huts = App\Models\Hut::where('huttype_id', $item->id)->get();
+                                @endphp
+                                @foreach ($huts as $hut)
+                                <a href="{{ route('edit.hut', $hut->id) }}" class="btn btn-warning rounded-pill px-4 mx-1">Edit</a>
+                                <a href="" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
+                                @endforeach
                             </td>
                         </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
