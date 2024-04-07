@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\HutTypeController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\HutController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 
@@ -41,5 +42,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/hut/type/list', 'HutTypeList')->name('hut.type.list');
         Route::get('/add/hut/type', 'AddHutType')->name('add.hut.type');
         Route::post('/hut/type/store', 'HutTypeStore')->name('hut.type.store');
+    });
+
+    //Hut all Route
+    Route::controller(HutController::class)->group(function () {
+        Route::get('/edit/hut/{id}', 'EditHut')->name('edit.hut');
     });
 });
