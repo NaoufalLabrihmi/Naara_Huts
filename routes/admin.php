@@ -49,5 +49,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/edit/hut/{id}', 'EditHut')->name('edit.hut');
         Route::post('/update/hut/{id}', 'UpdateHut')->name('update.hut');
         Route::post('/delete/image', 'Delete')->name('delete.image');
+        Route::post('/store/hut/no/{id}', 'StoreHutNumber')->name('store.hut.no');
+        Route::get('/edit/hutno/{id}', 'EditHutNumber')->name('edit.hutno');
+        Route::post('/update/hutno/{id}', 'UpdateHutNumber')->name('update.hutno');
+        Route::get('/delete/hutno/{id}', 'DeleteHutNumber')->name('delete.hutno');
     });
 });

@@ -7,6 +7,7 @@ use App\Models\Hut;
 use App\Models\Facility;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\HutNumber;
 use App\Models\MultiImage;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,8 @@ class HutController extends Controller
         $basic_facility = Facility::where('huts_id', $id)->get();
         $multiimgs = MultiImage::where('huts_id', $id)->get();
         $editData = Hut::find($id);
-        return view('backend.allhut.huts.edit_hut', compact('editData', 'basic_facility', 'multiimgs'));
+        $allhutNo = HutNumber::where('huts_id', $id)->get();
+        return view('backend.allhut.huts.edit_hut', compact('editData', 'basic_facility', 'multiimgs', 'allhutNo'));
     }
 
     public function UpdateHut(Request $request, $id)
@@ -125,5 +127,50 @@ class HutController extends Controller
             return response()->json(['success' => true]);
         }
         return response()->json(['success' => false]);
+    }
+
+    public function StoreHutNumber(Request $request, $id)
+    {
+        $data = new HutNumber();
+        $data->huts_id = $id;
+        $data->hut_type_id = $request->hut_type_id;
+        $data->hut_no = $request->hut_no;
+        $data->status = $request->status;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Hut Number Added Successfullty',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function EditHutNumber($id)
+    {
+        $edithutno = HutNumber::find($id);
+        return view('backend.allhut.huts.edit_hut_no', compact('edithutno'));
+    }
+
+    public function UpdateHutNumber(Request $request, $id)
+    {
+        $data = HutNumber::find($id);
+        $data->hut_no = $request->hut_no;
+        $data->status = $request->status;
+        $data->save();
+        $notification = array(
+            'message' => 'Hut Number Updated Successfullty',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function DeleteHutNumber($id)
+    {
+        HutNumber::find($id)->delete();
+        $notification = array(
+            'message' => 'Hut Number Deleted Successfullty',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
