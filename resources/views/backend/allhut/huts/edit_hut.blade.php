@@ -39,7 +39,9 @@
                                     <div class="card">
                                         <div class="card-body p-4">
                                             <h5 class="mb-4">Update Hut</h5>
-                                            <form class="row g-3">
+                                            <form class="row g-3" action="{{ route('update.hut', $editData->id) }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+
                                                 <div class="col-md-4">
                                                     <label for="input1" class="form-label">Hut Type Name</label>
                                                     <input name="huttype_id" type="text" class="form-control" id="input1" value="{{$editData['type']['name']}}">
@@ -55,23 +57,72 @@
                                                 <div class="col-md-6">
                                                     <label for="input3" class="form-label">Main Image</label>
                                                     <input type="file" name="image" class="form-control" id="image">
-                                                    <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/hutimg/'.$editData->image) : url('upload/no_img.jpg') }}" alt="Admin" class="rounded-3" width="80">
+                                                    <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/hutimg/'.$editData->image) : url('upload/no_img.jpg') }}" alt="Admin" class="rounded-3" width="80" height="90">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input4" class="form-label">Gallery Image</label>
                                                     <input type="file" name="multi_img[]" class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
+
+                                                    <div class="row g-3">
+                                                        @foreach($multiimgs as $item)
+                                                        <div class="col-auto">
+                                                            <div class="image-container d-inline-block">
+                                                                <img src="{{ (!empty($item->multi_img)) ? url('upload/hutimg/multi_img/'.$item->multi_img) : url('upload/no_img.jpg') }}" alt="Image" class="rounded-3" width="80" height="80">
+                                                                <a href="#" class="delete-image" data-image-id="{{ $item->id }}"><i class="lni lni-close"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+                                                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+                                                    <script>
+                                                        $(document).ready(function() {
+                                                            $('.delete-image').click(function(e) {
+                                                                e.preventDefault();
+                                                                var imageId = $(this).data('image-id');
+                                                                var imageContainer = $(this).closest('.image-container');
+                                                                $.ajax({
+                                                                    url: "{{ route('delete.image') }}",
+                                                                    type: "POST",
+                                                                    data: {
+                                                                        _token: "{{ csrf_token() }}",
+                                                                        image_id: imageId
+                                                                    },
+                                                                    success: function(response) {
+                                                                        if (response.success) {
+                                                                            // Remove the image container from the view
+                                                                            imageContainer.remove();
+                                                                            // Display notification if successful
+                                                                            toastr.success("Image Delete Success");
+                                                                        } else {
+                                                                            toastr.error("Failed to delete image. Please try again.");
+                                                                        }
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+
+
+
+
                                                     <div class="row" id="preview_img"></div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <label for="input1" class="form-label">Hut Price</label>
                                                     <input name="price" type="text" class="form-control" id="input1" value="{{$editData->price}}">
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <label for="input2" class="form-label">Discount ( % )</label>
                                                     <input name="discount" type="text" class="form-control" id="input2" value="{{$editData->discount}}">
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
+                                                    <label for="input2" class="form-label">Size</label>
+                                                    <input name="size" type="text" class="form-control" id="input2" value="{{$editData->size}}">
+                                                </div>
+                                                <div class="col-md-3">
                                                     <label for="input2" class="form-label">Hut Capacity</label>
                                                     <input name="hut_capacity" type="text" class="form-control" id="input2" value="{{$editData->hut_capacity}}">
                                                 </div>
@@ -80,17 +131,17 @@
                                                     <label for="input7" class="form-label">Hut View</label>
                                                     <select name="view" id="input7" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Sea View">Sea View</option>
-                                                        <option value="Hill View">Hill View</option>
+                                                        <option value="Sea View" {{$editData->view == 'Sea View' ? 'selected' : ''}}>Sea View</option>
+                                                        <option value="Hill View" {{$editData->view == 'Hill View' ? 'selected' : ''}}>Hill View</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="input7" class="form-label">Bed Style</label>
                                                     <select name="bed_style" id="input7" class="form-select">
                                                         <option selected="">Choose...</option>
-                                                        <option value="Queen Bed">Queen Bed</option>
-                                                        <option value="Twin Bed">Twin Bed</option>
-                                                        <option value="King Bed">King Bed</option>
+                                                        <option value="Queen Bed" {{$editData->bed_style == 'Queen Bed' ? 'selected' : ''}}>Queen Bed</option>
+                                                        <option value="Twin Bed" {{$editData->bed_style == 'Twin Bed' ? 'selected' : ''}}>Twin Bed</option>
+                                                        <option value="King Bed" {{$editData->bed_style == 'King Bed' ? 'selected' : ''}}>King Bed</option>
                                                     </select>
                                                 </div>
 
@@ -142,8 +193,8 @@
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group" style="padding-top: 30px;">
-                                                                        <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></a>
-                                                                        <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i></span>
+                                                                        <a class="btn btn-success addeventmore"><i class="lni lni-circle-plus"></i></a>
+                                                                        <span class="btn btn-danger btn-sm removeeventmore"><i class="lni lni-circle-minus"></i></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -238,7 +289,9 @@
                             return function(e) {
                                 var img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(100)
                                     .height(80); //create image element
-                                $('#preview_img').append(img); //append image to output element
+                                var deleteIcon = $('<i/>').addClass('custom-close-icon').html('&times;').css('cursor', 'pointer'); // Create custom close icon with pointer cursor
+                                var imgContainer = $('<div/>').addClass('image-container').css('display', 'inline-block').css('margin-top', '20px').css('width', '120px').append(img, deleteIcon); //create image container with delete icon
+                                $('#preview_img').append(imgContainer); //append image container to output element
                             };
                         })(file);
                         fRead.readAsDataURL(file); //URL representing the file's data.
@@ -249,8 +302,18 @@
                 alert("Your browser doesn't support File API!"); //if File API is absent
             }
         });
+
+        // Delete image event handler
+        $(document).on('click', '.custom-close-icon', function() {
+            $(this).closest('.image-container').remove(); // Remove the image container when delete icon is clicked
+        });
     });
 </script>
+
+
+
+
+
 
 <!--========== Start of add Basic Plan Facilities ==============-->
 <div style="visibility: hidden">

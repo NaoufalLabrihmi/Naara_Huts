@@ -47,5 +47,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //Hut all Route
     Route::controller(HutController::class)->group(function () {
         Route::get('/edit/hut/{id}', 'EditHut')->name('edit.hut');
+        Route::post('/update/hut/{id}', 'UpdateHut')->name('update.hut');
+        Route::post('/delete/image', 'Delete')->name('delete.image');
     });
 });
