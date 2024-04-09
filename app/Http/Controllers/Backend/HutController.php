@@ -29,7 +29,6 @@ class HutController extends Controller
     public function UpdateHut(Request $request, $id)
     {
         $hut = Hut::find($id);
-        $hut->huttype_id = $hut->huttype_id;
         $hut->total_adult = $request->total_adult;
         $hut->total_child = $request->total_child;
         $hut->hut_capacity = $request->hut_capacity;
@@ -51,7 +50,10 @@ class HutController extends Controller
         }
 
         $hut->save();
-
+        // Update hut type name
+        $hutType = HutType::find($hut->huttype_id);
+        $hutType->name = $request->hut_type_name;
+        $hutType->save();
         // Update for facality table
         if ($request->facility_name == NULL) {
             $notification = array(

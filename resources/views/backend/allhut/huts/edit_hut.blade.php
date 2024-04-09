@@ -44,7 +44,7 @@
 
                                                 <div class="col-md-4">
                                                     <label for="input1" class="form-label">Hut Type Name</label>
-                                                    <input name="huttype_id" type="text" class="form-control" id="input1" value="{{$editData['type']['name']}}">
+                                                    <input name="hut_type_name" type="text" class="form-control" id="input1" value="{{$editData['type']['name']}}">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="input2" class="form-label">Total Adult</label>
