@@ -8,6 +8,7 @@ use App\Models\Facility;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\HutNumber;
+use App\Models\HutType;
 use App\Models\MultiImage;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -169,6 +170,36 @@ class HutController extends Controller
         HutNumber::find($id)->delete();
         $notification = array(
             'message' => 'Hut Number Deleted Successfullty',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function DeleteHut(Request $request, $id)
+    {
+        $hut = Hut::find($id);
+        if (file_exists('upload/hutimg/' . $hut->image) and !empty($hut->image)) {
+            @unlink('upload/hutimg/' . $hut->image);
+        }
+
+        $subimage = MultiImage::where('huts_id', $hut->id)->get()->toArray();
+        if (!empty($subimage)) {
+            foreach ($subimage as $value) {
+                if (!empty($value)) {
+                    @unlink('upload/hutimg/multi_img' . $value['multi_img']);
+                }
+            }
+        }
+
+        HutType::where('id', $hut->huttype_id)->delete();
+        MultiImage::where('huts_id', $hut->id)->delete();
+        Facility::where('huts_id', $hut->id)->delete();
+        HutNumber::where('huts_id', $hut->id)->delete();
+        $hut->delete();
+
+
+        $notification = array(
+            'message' => 'Hut Deleted Successfullty',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

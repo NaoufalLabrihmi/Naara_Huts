@@ -39,9 +39,11 @@
                                 @php
                                 $huts = App\Models\Hut::where('huttype_id', $item->id)->get();
                                 @endphp
+
                                 @foreach ($huts as $hut)
+
                                 <a href="{{ route('edit.hut', $hut->id) }}" class="btn btn-warning rounded-pill px-4 mx-1">Edit</a>
-                                <a href="" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
+                                <a href="{{ route('delete.hut', $hut->id) }}" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
                                 @endforeach
                             </td>
                         </tr>

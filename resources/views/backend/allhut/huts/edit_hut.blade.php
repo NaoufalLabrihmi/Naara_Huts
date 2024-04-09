@@ -306,6 +306,7 @@
                                             <tbody>
 
                                                 @foreach($allhutNo as $item)
+
                                                 <tr>
                                                     <td>{{ $item->hut_no }}</td>
                                                     <td>{{ $item->status }}</td>
