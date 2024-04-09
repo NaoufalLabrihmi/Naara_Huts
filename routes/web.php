@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Frontend\FrontendHutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 
+Route::controller(FrontendHutController::class)->group(function () {
+    Route::get('/huts', 'AllFrontendHutList')->name('froom.all');
+});
 
 
 //// adminn
