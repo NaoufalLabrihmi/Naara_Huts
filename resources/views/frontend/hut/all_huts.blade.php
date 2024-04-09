@@ -30,11 +30,11 @@
             @foreach ($huts as $item)
             <div class="col-lg-4 col-md-6">
                 <div class="room-card">
-                    <a href="room-details.html">
+                    <a href="{{url('hut/details/'.$item->id)}}">
                         <img src="{{ asset( 'upload/hutimg/'.$item->image ) }}" alt="Images" style="width: 550px; height:300px;">
                     </a>
                     <div class="content">
-                        <h6><a href="">{{ $item['type']['name'] }}</a></h6>
+                        <h6><a href="{{url('hut/details/'.$item->id)}}">{{ $item['type']['name'] }}</a></h6>
                         <ul>
                             <li class="text-color">${{ $item->price }}</li>
                             <li class="text-color">Per Night</li>
