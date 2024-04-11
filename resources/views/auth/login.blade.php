@@ -74,22 +74,27 @@
 
 
 <script>
-    // Class definition
     var KHSigninGeneral = function() {
-        // Elements
         var form;
         var submitButton;
         var validator;
 
-        // validate form
         var handleValidation = function(e) {
-            // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
             validator = FormValidation.formValidation(form, {
                 fields: {
                     'email_phone': {
                         validators: {
                             notEmpty: {
                                 message: 'Email or phone is required'
+                            },
+                            custom: {
+                                message: 'Please enter a valid email or phone number',
+                                validate: function(input) {
+                                    const value = input.value;
+                                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    const phoneRegex = /^\d{10}$/;
+                                    return emailRegex.test(value) || phoneRegex.test(value);
+                                }
                             }
                         }
                     },
@@ -112,23 +117,16 @@
             });
         }
 
-        // ajax form
         var handleSubmitAjax = function(e) {
-            // Handle form submit
             submitButton.addEventListener('click', function(e) {
-                // Prevent button default action
                 e.preventDefault();
-                // Validate form
                 validator.validate().then(function(status) {
                     if (status == 'Valid') {
-                        // Show loading indication
                         submitButton.setAttribute('data-kt-indicator', 'on');
-                        // Disable button to avoid multiple click
-                        submitButton.disabled = true; // Simulate ajax request
+                        submitButton.disabled = true;
 
-                        // route name url
-                        var url = "{{ route('login/push') }}"; // route name url
-                        var forms = $('#kt_sign_in_form'); // Prepare form data
+                        var url = "{{ route('login/push') }}";
+                        var forms = $('#kt_sign_in_form');
                         var data = $(forms).serialize();
                         $.ajax({
                             type: 'POST',
@@ -141,8 +139,8 @@
                         }).then(function(response) {
                             if (response.response_code == 200) {
                                 setTimeout(function(time) {
-                                    submitButton.removeAttribute('data-kt-indicator'); // Hide loading indication
-                                    submitButton.disabled = false; // Enable button
+                                    submitButton.removeAttribute('data-kt-indicator');
+                                    submitButton.disabled = false;
                                     Swal.fire({
                                         text: "You have successfully logged in!",
                                         icon: "success",
@@ -158,10 +156,10 @@
                                             location.href = redirectUrl;
                                         }
                                     });
-                                }, );
+                                });
                             } else if (response.response_code == 400) {
-                                submitButton.removeAttribute('data-kt-indicator'); // Hide loading indication
-                                submitButton.disabled = false; // Enable button
+                                submitButton.removeAttribute('data-kt-indicator');
+                                submitButton.disabled = false;
                                 Swal.fire({
                                     text: "Sorry, the email or password is incorrect, please try again 400.",
                                     icon: "error",
@@ -174,9 +172,8 @@
                             }
                         });
                     } else {
-                        submitButton.removeAttribute('data-kt-indicator'); // Hide loading indication
-                        submitButton.disabled = false; // Enable button
-                        // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        submitButton.removeAttribute('data-kt-indicator');
+                        submitButton.disabled = false;
                         Swal.fire({
                             text: "Sorry, the email or password is incorrect, please try again.",
                             icon: "error",
@@ -191,18 +188,16 @@
             });
         }
 
-        // Public functions
         return {
-            // Initialization
             init: function() {
                 form = document.querySelector('#kt_sign_in_form');
                 submitButton = document.querySelector('#kt_sign_in_submit');
                 handleValidation();
-                handleSubmitAjax(); // use for ajax submit
+                handleSubmitAjax();
             }
         };
     }();
-    // On document ready
+
     KTUtil.onDOMContentLoaded(function() {
         KHSigninGeneral.init();
     });
