@@ -69,6 +69,7 @@ require __DIR__ . '/admin.php';
 Route::controller(FrontendHutController::class)->group(function () {
     Route::get('/huts', 'AllFrontendHutList')->name('froom.all');
     Route::get('/hut/details/{id}', 'HutDetailsPage');
+    Route::get('/booking/', 'BookingSearch')->name('booking.search');
 });
 
 

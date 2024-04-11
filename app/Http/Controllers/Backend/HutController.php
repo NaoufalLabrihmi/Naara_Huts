@@ -39,6 +39,8 @@ class HutController extends Controller
         $hut->discount = $request->discount;
         $hut->short_desc = $request->short_desc;
         $hut->description = $request->description;
+        $hut->status = 1;
+
 
         //update single image
         if ($request->file('image')) {

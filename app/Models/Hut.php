@@ -14,4 +14,9 @@ class Hut extends Model
     {
         return $this->belongsTo(HutType::class, 'huttype_id', 'id');
     }
+
+    public function hut_numbers()
+    {
+        return $this->hasMany(HutNumber::class, 'huts_id')->where('status', 'Active');
+    }
 }

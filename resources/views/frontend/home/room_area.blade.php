@@ -16,7 +16,7 @@ $hut = App\Models\Hut::latest()->limit(4)->get();
                     <div class="row align-items-center">
                         <div class="col-lg-5 col-md-4 p-0">
                             <div class="room-card-img">
-                                <a href="">
+                                <a href="{{url('hut/details/'.$item->id)}}">
                                     <img src="{{ asset( 'upload/hutimg/'.$item->image ) }}" alt="Images">
                                 </a>
                             </div>
@@ -25,7 +25,7 @@ $hut = App\Models\Hut::latest()->limit(4)->get();
                         <div class="col-lg-7 col-md-8 p-0">
                             <div class="room-card-content">
                                 <h3>
-                                    <a href="">{{ $item['type']['name'] }}</a>
+                                    <a href="{{url('hut/details/'.$item->id)}}">{{ $item['type']['name'] }}</a>
                                 </h3>
                                 <span>{{ $item->price }} / Per Night </span>
                                 <div class="rating">
