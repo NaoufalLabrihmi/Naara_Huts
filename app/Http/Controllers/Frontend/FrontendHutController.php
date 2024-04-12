@@ -38,6 +38,13 @@ class FrontendHutController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+        if ($request->check_out < $request->check_in) {
+            $notification = array(
+                'message' => 'Check-out date cannot be before check-in date.',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
         $sdate = date('Y-m-d', strtotime($request->check_in));
         $edate = date('Y-m-d', strtotime($request->check_out));
         $alldate = Carbon::create($edate)->subDay();
@@ -52,5 +59,16 @@ class FrontendHutController extends Controller
         $huts = Hut::withCount('hut_numbers')->where('status', 1)->get();
 
         return view('frontend.hut.search_hut', compact('huts', 'check_date_booking_ids'));
+    }
+
+    public function SearchHutDetails(Request $request, $id)
+    {
+        $request->flash();
+        $hutdetails = Hut::find($id);
+        $multiImage = MultiImage::where('huts_id', $id)->get();
+        $facility = Facility::where('huts_id', $id)->get();
+        $otherHuts = Hut::where('id', '!=', $id)->orderBy('id', 'DESC')->limit(2)->get();
+        $hut_id = $id;
+        return view('frontend.hut.search_hut_details', compact('hutdetails', 'multiImage', 'facility', 'otherHuts', 'hut_id'));
     }
 }
