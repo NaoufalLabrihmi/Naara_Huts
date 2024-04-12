@@ -71,6 +71,7 @@ Route::controller(FrontendHutController::class)->group(function () {
     Route::get('/hut/details/{id}', 'HutDetailsPage');
     Route::get('/booking/', 'BookingSearch')->name('booking.search');
     Route::get('/search/hut/details/{id}', 'SearchHutDetails')->name('search_hut_details');
+    Route::get('/check_hut_availability/', 'ChekHutAvailability')->name('check_hut_availability');
 });
 
 

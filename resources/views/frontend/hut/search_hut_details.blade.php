@@ -1,5 +1,6 @@
 @extends('frontend.main_master')
 @section('main')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <!-- Inner Banner -->
 <div class="inner-banner inner-bg10">
@@ -10,7 +11,7 @@
                     <a href="{{url('/')}}">Home</a>
                 </li>
                 <li><i class='bx bx-chevron-right'></i></li>
-                <li>Room Details </li>
+                <li>Hut Details </li>
             </ul>
             <h3>{{$hutdetails->type->name}}</h3>
         </div>
@@ -18,7 +19,7 @@
 </div>
 <!-- Inner Banner End -->
 
-<!-- Room Details Area End -->
+<!-- Hut Details Area End -->
 <div class="room-details-area pt-100 pb-70">
     <div class="container">
         <div class="row">
@@ -26,7 +27,9 @@
                 <div class="room-details-side">
                     <div class="side-bar-form">
                         <h3>Booking Sheet </h3>
-                        <form>
+                        <form action="" method="post" id="bk_form">
+                            @csrf
+                            <input type="hidden" name="hut_id" value="{{$hutdetails->id}}">
                             <div class="row align-items-center">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -59,15 +62,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" id="total_adult" value="{{$hutdetails->total_adult}}">
+                                <input type="hidden" id="hut_price" value="{{$hutdetails->price}}">
+                                <input type="hidden" id="discount_p" value="{{$hutdetails->discount}}">
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Numbers of Rooms</label>
-                                        <select class="form-control" name="number_of_huts" id="select_hut">
+                                        <label>Numbers of Huts</label>
+                                        <select class="form-control number_of_huts" name="number_of_huts" id="select_hut">
                                             @for($i=1;$i<=5;$i++) <option value="0{{$i}}">0{{$i}}</option>
                                                 @endfor
                                         </select>
                                     </div>
+                                    <input type="hidden" name="available_hut" id="available_hut">
+                                    <p class="available_hut"></p>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12">
@@ -76,21 +84,21 @@
                                             <td>
                                                 <p> SubTotal </p>
                                             </td>
-                                            <td style="text-align: right">34</td>
+                                            <td style="text-align: right"><span class="t_subtotal">0</span></td>
                                         </tr>
 
                                         <tr>
                                             <td>
                                                 <p> Discount </p>
                                             </td>
-                                            <td style="text-align: right">34</td>
+                                            <td style="text-align: right"><span class="t_discount">0</span></td>
                                         </tr>
 
                                         <tr>
                                             <td>
                                                 <p> Total </p>
                                             </td>
-                                            <td style="text-align: right">34</td>
+                                            <td style="text-align: right"><span class="t_g_total">0</span></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -241,9 +249,9 @@
         </div>
     </div>
 </div>
-<!-- Room Details Area End -->
+<!-- Hut Details Area End -->
 
-<!-- Room Details Other -->
+<!-- Hut Details Other -->
 <div class="room-details-other pb-70">
     <div class="container">
         <div class="room-details-text">
@@ -299,6 +307,72 @@
         </div>
     </div>
 </div>
-<!-- Room Details Other End -->
+<!-- Hut Details Other End -->
 
+
+<script>
+    $(document).ready(function() {
+        var check_in = "{{ old('check_in') }}";
+        var check_out = "{{ old('check_out') }}";
+        var hut_id = "{{ $hut_id }}";
+        if (check_in != '' && check_out != '') {
+            getAvaility(check_in, check_out, hut_id);
+        }
+        $("#check_out").on('change', function() {
+            var check_out = $(this).val();
+            var check_in = $("#check_in").val();
+            if (check_in != '' && check_out != '') {
+                getAvaility(check_in, check_out, hut_id);
+            }
+        });
+        $(".number_of_huts").on('change', function() {
+            var check_out = $("#check_out").val();
+            var check_in = $("#check_in").val();
+            if (check_in != '' && check_out != '') {
+                getAvaility(check_in, check_out, hut_id);
+            }
+        });
+    });
+
+    function getAvaility(check_in, check_out, hut_id) {
+        $.ajax({
+            url: "{{ route('check_hut_availability') }}",
+            data: {
+                hut_id: hut_id,
+                check_in: check_in,
+                check_out: check_out
+            },
+            success: function(data) {
+                $(".available_hut").html('Availability : <span class="text-success">' + data['available_hut'] + ' Huts</span>');
+                $("#available_hut").val(data['available_hut']);
+                price_calculate(data['total_nights']);
+            }
+        });
+    }
+
+    function price_calculate(total_nights) {
+        var hut_price = $("#hut_price").val();
+        var discount_p = $("#discount_p").val();
+        var select_hut = $("#select_hut").val();
+        var sub_total = hut_price * total_nights * parseInt(select_hut);
+        var discount_price = (parseInt(discount_p) / 100) * sub_total;
+        $(".t_subtotal").text(sub_total);
+        $(".t_discount").text(discount_price);
+        $(".t_g_total").text(sub_total - discount_price);
+    }
+    $("#bk_form").on('submit', function() {
+        var av_hut = $("#available_hut").val();
+        var select_hut = $("#select_hut").val();
+        if (parseInt(select_hut) > av_hut) {
+            alert('Sorry, you select maximum number of hut');
+            return false;
+        }
+        var nmbr_person = $("#nmbr_person").val();
+        var total_adult = $("#total_adult").val();
+        if (parseInt(nmbr_person) > parseInt(total_adult)) {
+            alert('Sorry, you select maximum number of person');
+            return false;
+        }
+    })
+</script>
 @endsection
