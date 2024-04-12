@@ -41,11 +41,12 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="room-card">
-                        <a href="{{url('hut/details/'.$item->id)}}">
+                        <a href="{{ route('search_hut_details', $item->id.'?check_in='.old('check_in').'&check_out='.old('check_out').'&person='.old('person')) }}">
                             <img src="{{ asset( 'upload/hutimg/'.$item->image ) }}" alt="Images" style="width: 550px; height:300px;">
                         </a>
                         <div class="content">
-                            <h6><a href="{{url('hut/details/'.$item->id)}}">{{ $item['type']['name'] }}</a></h6>
+                            <h6><a href="{{ route('search_hut_details', $item->id.'?check_in='.old('check_in').'&check_out='.old('check_out').'&person='.old('person')) }}">
+                                    {{ $item['type']['name'] }}</a></h6>
                             <ul>
                                 <li class="text-color">${{ $item->price }}</li>
                                 <li class="text-color">Per Night</li>
