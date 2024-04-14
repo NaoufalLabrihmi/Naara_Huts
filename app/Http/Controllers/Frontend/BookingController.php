@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
 use App\Models\Hut;
+use App\Models\Booking;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use App\Models\HutBookedDate;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
@@ -58,5 +62,81 @@ class BookingController extends Controller
         Session::put('book_date', $data);
 
         return redirect()->route('checkout');
+    }
+
+    public function CheckoutStore(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            'adress' => 'required',
+            'state' => 'required',
+            'zip_code' => 'required',
+            'payment_method' => 'required',
+        ]);
+
+        $book_data = Session::get('book_date');
+        $toDate = Carbon::parse($book_data['check_in']);
+        $fromDate = Carbon::parse($book_data['check_out']);
+        $total_nights = $toDate->diffInDays($fromDate);
+
+        $hut = Hut::find($book_data['hut_id']);
+        $subtotal = $hut->price * $total_nights * $book_data['number_of_huts'];
+        $discount = ($hut->discount / 100) * $subtotal;
+        $total_price = $subtotal - $discount;
+        $code = rand(000000000, 999999999);
+
+        $data = new Booking();
+        $data->huts_id = $hut->id;
+        $data->user_id = Auth::user()->id;
+        $data->check_in = date('Y-m-d', strtotime($book_data['check_in']));
+        $data->check_out = date('Y-m-d', strtotime($book_data['check_out']));
+        $data->person = $book_data['person'];
+        $data->number_of_huts = $book_data['number_of_huts'];
+        $data->total_night = $total_nights;
+
+        $data->actual_price = $hut->price;
+        $data->subtotal = $subtotal;
+        $data->discount = $discount;
+        $data->total_price = $total_price;
+        $data->payment_method = $request->payment_method;
+        $data->transation_id = '';
+        $data->payment_status = 0;
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->country = $request->country;
+        $data->state = $request->state;
+        $data->zip_code = $request->zip_code;
+        $data->adress = $request->adress;
+
+        $data->code = $code;
+        $data->status = 0;
+        $data->created_at = Carbon::now();
+        $data->save();
+
+        $sdate = date('Y-m-d', strtotime($book_data['check_in']));
+        $edate = date('Y-m-d', strtotime($book_data['check_out']));
+        $eldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate, $eldate);
+        foreach ($d_period as $period) {
+            $booked_dates = new HutBookedDate();
+            $booked_dates->booking_id = $data->id;
+            $booked_dates->hut_id = $hut->id;
+            $booked_dates->book_date = date('Y-m-d', strtotime($period));
+            $booked_dates->save();
+        }
+
+        Session::forget('book_date');
+
+        $notification = array(
+            'message' => 'Booking Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect('/')->with($notification);
     }
 }

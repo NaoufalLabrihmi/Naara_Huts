@@ -96,6 +96,7 @@
     <!-- Custom JS -->
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         @if(Session::has('message'))
