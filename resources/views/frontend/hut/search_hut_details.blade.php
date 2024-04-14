@@ -19,6 +19,61 @@
 </div>
 <!-- Inner Banner End -->
 
+<style>
+    #toast {
+        visibility: hidden;
+        height: 50px;
+        width: fit-content;
+        margin: auto;
+        background-color: rgb(209, 68, 68);
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        right: 0;
+        top: 30px;
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    #toast #desc {
+        color: #fff;
+        padding: 16px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    #toast.show {
+        visibility: visible;
+        animation: fadein 1s, fadeout 1s 3s;
+    }
+
+    @keyframes fadein {
+        from {
+            top: 0;
+            opacity: 0;
+        }
+
+        to {
+            top: 30px;
+            opacity: 1
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            top: 30px;
+            opacity: 1;
+        }
+
+        to {
+            top: 0;
+            opacity: 0;
+        }
+    }
+</style>
 <!-- Hut Details Area End -->
 <div class="room-details-area pt-100 pb-70">
     <div class="container">
@@ -27,7 +82,7 @@
                 <div class="room-details-side">
                     <div class="side-bar-form">
                         <h3>Booking Sheet </h3>
-                        <form action="" method="post" id="bk_form">
+                        <form action="{{ route('user_booking_store',$hutdetails->id) }}" method="post" id="bk_form">
                             @csrf
                             <input type="hidden" name="hut_id" value="{{$hutdetails->id}}">
                             <div class="row align-items-center">
@@ -51,6 +106,9 @@
                                         </div>
                                         <i class='bx bxs-calendar'></i>
                                     </div>
+                                </div>
+                                <div id="toast">
+                                    <div id="desc"></div>
                                 </div>
 
                                 <div class="col-lg-12">
@@ -146,7 +204,6 @@
                         <p>
                             {!! $hutdetails->description !!}
                         </p>
-
 
 
 
@@ -318,6 +375,13 @@
         if (check_in != '' && check_out != '') {
             getAvaility(check_in, check_out, hut_id);
         }
+        $("#check_in").on('change', function() {
+            var check_out = $("#check_out").val();
+            var check_in = $(this).val();
+            if (check_in != '' && check_out != '') {
+                getAvaility(check_in, check_out, hut_id);
+            }
+        });
         $("#check_out").on('change', function() {
             var check_out = $(this).val();
             var check_in = $("#check_in").val();
@@ -345,12 +409,21 @@
             success: function(data) {
                 $(".available_hut").html('Availability : <span class="text-success">' + data['available_hut'] + ' Huts</span>');
                 $("#available_hut").val(data['available_hut']);
-                price_calculate(data['total_nights']);
+                // Check if check-in is after check-out
+                if (check_in && check_out && new Date(check_in) > new Date(check_out)) {
+                    showError("Error check in sup that check out");
+                    showNotification("Check-in date cannot be after check-out date.");
+                } else {
+                    // Calculate and show prices
+                    price_calculate(data['total_nights']);
+                }
             }
         });
     }
 
     function price_calculate(total_nights) {
+        var check_in = $("#check_in").val();
+        var check_out = $("#check_out").val();
         var hut_price = $("#hut_price").val();
         var discount_p = $("#discount_p").val();
         var select_hut = $("#select_hut").val();
@@ -360,19 +433,45 @@
         $(".t_discount").text(discount_price);
         $(".t_g_total").text(sub_total - discount_price);
     }
-    $("#bk_form").on('submit', function() {
-        var av_hut = $("#available_hut").val();
-        var select_hut = $("#select_hut").val();
-        if (parseInt(select_hut) > av_hut) {
-            alert('Sorry, you select maximum number of hut');
-            return false;
-        }
-        var nmbr_person = $("#nmbr_person").val();
-        var total_adult = $("#total_adult").val();
-        if (parseInt(nmbr_person) > parseInt(total_adult)) {
-            alert('Sorry, you select maximum number of person');
-            return false;
-        }
-    })
+
+    function showError(message) {
+        $(".t_subtotal, .t_discount, .t_g_total").text(message);
+    }
+
+    $(document).ready(function() {
+        $("#bk_form").on('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var av_hut = parseInt($("#available_hut").val());
+            var select_hut = parseInt($("#select_hut").val());
+            var nmbr_person = parseInt($("#nmbr_person").val());
+            var total_adult = parseInt($("#total_adult").val());
+            var check_in = $("#check_in").val();
+            var check_out = $("#check_out").val();
+            // Check if check-in is after check-out
+            if (check_in && check_out && new Date(check_in) > new Date(check_out)) {
+                showNotification("Check-in date cannot be after check-out date.");
+                return;
+            }
+
+            if (select_hut > av_hut || nmbr_person > total_adult) {
+                var message = (select_hut > av_hut) ? 'Sorry, you have selected more huts than available.' : 'Sorry, you have selected more persons than available.';
+                showNotification(message);
+            } else {
+                // Submit form if validation passes
+                $("#bk_form").unbind('submit').submit();
+            }
+        });
+    });
+
+    function showNotification(message) {
+        let notification = $("#toast");
+        notification.find("#desc").text(message);
+        notification.addClass("show");
+        setTimeout(() => {
+            notification.removeClass("show");
+        }, 4000);
+    }
 </script>
+
 @endsection

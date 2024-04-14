@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Frontend\BookingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\FrontendHutController;
+use App\Models\Booking;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,5 +76,12 @@ Route::controller(FrontendHutController::class)->group(function () {
     Route::get('/check_hut_availability/', 'ChekHutAvailability')->name('check_hut_availability');
 });
 
+Route::middleware(['auth'])->group(function () {
+    //Check out all route
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/checkout/', 'Checkout')->name('checkout');
+        Route::post('/booking/store/', 'BookingStore')->name('user_booking_store');
+    });
+});
 
 //// adminn
