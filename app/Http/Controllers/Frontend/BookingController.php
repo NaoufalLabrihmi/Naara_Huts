@@ -11,6 +11,7 @@ use App\Models\HutBookedDate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Stripe;
 
 class BookingController extends Controller
 {
@@ -88,6 +89,34 @@ class BookingController extends Controller
         $discount = ($hut->discount / 100) * $subtotal;
         $total_price = $subtotal - $discount;
         $code = rand(000000000, 999999999);
+
+
+        if ($request->payment_method == 'Stripe') {
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $s_pay = Stripe\Charge::create([
+                "amount" => $total_price * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Payment For Booking. Booking No " . $code,
+
+            ]);
+
+            if ($s_pay['status'] == 'succeeded') {
+                $payment_status = 1;
+                $transation_id = $s_pay->id;
+            } else {
+
+                $notification = array(
+                    'message' => 'Sorry Payment Field',
+                    'alert-type' => 'error'
+                );
+                return redirect('/')->with($notification);
+            }
+        } else {
+            $payment_status = 0;
+            $transation_id = '';
+        }
+
 
         $data = new Booking();
         $data->huts_id = $hut->id;
