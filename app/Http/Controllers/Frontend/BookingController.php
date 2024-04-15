@@ -168,4 +168,34 @@ class BookingController extends Controller
         );
         return redirect('/')->with($notification);
     }
+
+
+    public function BookingList()
+    {
+
+        $allData = Booking::orderBy('id', 'desc')->get();
+        return view('backend.booking.booking_list', compact('allData'));
+    }
+
+    public function EditBooking($id)
+    {
+
+        $editData = Booking::with('hut')->find($id); //to avoid the N + 1 query problem
+        return view('backend.booking.edit_booking', compact('editData'));
+    }
+
+    public function UpdateBookingStatus(Request $request, $id)
+    {
+
+        $booking = Booking::find($id);
+        $booking->payment_status = $request->payment_status;
+        $booking->status = $request->status;
+        $booking->save();
+
+        $notification = array(
+            'message' => 'Information Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }
