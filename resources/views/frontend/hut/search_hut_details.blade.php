@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label>Check in</label>
                                         <div class="input-group">
-                                            <input autocomplete="off" type="text" required name="check_in" id="check_in" class="form-control dt_picker" value="{{ old('check_in') ? date('Y-m-d', strtotime(old('check_in'))) : '' }}">
+                                            <input autocomplete="off" type="text" onchange="chkininni()" required name="check_in" id="check_in" class="checkincust form-control dt_picker" value="{{ old('check_in') ? date('Y-m-d', strtotime(old('check_in'))) : '' }}">
                                             <span class="input-group-addon"></span>
                                         </div>
                                         <i class='bx bxs-calendar'></i>
@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <label>Check Out</label>
                                         <div class="input-group">
-                                            <input autocomplete="off" type="text" required name="check_out" id="check_out" class="form-control dt_picker" value="{{ old('check_out') ? date('Y-m-d', strtotime(old('check_out'))) : '' }}">
+                                            <input autocomplete="off" type="text" onchange="changedchekout()" required name="check_out" id="check_out" class="form-control dt_picker" value="{{ old('check_out') ? date('Y-m-d', strtotime(old('check_out'))) : '' }}">
                                             <span class="input-group-addon"></span>
                                         </div>
                                         <i class='bx bxs-calendar'></i>
@@ -127,7 +127,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Numbers of Huts</label>
-                                        <select class="form-control number_of_huts" name="number_of_huts" id="select_hut">
+                                        <select class="form-control number_of_huts" onchange="changedhutsnumber()" name="number_of_huts" id="select_hut">
                                             @for($i=1;$i<=5;$i++) <option value="0{{$i}}">0{{$i}}</option>
                                                 @endfor
                                         </select>
@@ -368,35 +368,46 @@
 
 
 <script>
+    var hut_id = "{{ $hut_id }}";
     $(document).ready(function() {
         var check_in = "{{ old('check_in') }}";
         var check_out = "{{ old('check_out') }}";
-        var hut_id = "{{ $hut_id }}";
+
         if (check_in != '' && check_out != '') {
             getAvaility(check_in, check_out, hut_id);
         }
-        $("#check_in").on('change', function() {
-            var check_out = $("#check_out").val();
-            var check_in = $(this).val();
-            if (check_in != '' && check_out != '') {
-                getAvaility(check_in, check_out, hut_id);
-            }
-        });
-        $("#check_out").on('change', function() {
-            var check_out = $(this).val();
-            var check_in = $("#check_in").val();
-            if (check_in != '' && check_out != '') {
-                getAvaility(check_in, check_out, hut_id);
-            }
-        });
-        $(".number_of_huts").on('change', function() {
-            var check_out = $("#check_out").val();
-            var check_in = $("#check_in").val();
-            if (check_in != '' && check_out != '') {
-                getAvaility(check_in, check_out, hut_id);
-            }
-        });
+
     });
+
+    function chkininni() {
+        var check_out = $("#check_out").val();
+
+        var check_in = $("#check_in").val();
+        if (check_in != '' && check_out != '') {
+            getAvaility(check_in, check_out, hut_id);
+        }
+    };
+
+    function changedchekout() {
+        console.log("dkhlt")
+        var check_out = $("#check_out").val();
+        var check_in = $("#check_in").val();
+        if (check_in != '' && check_out != '') {
+            getAvaility(check_in, check_out, hut_id);
+        }
+    }
+
+
+    function changedhutsnumber() {
+        console.log("dkhlt")
+        var check_out = $("#check_out").val();
+        var check_in = $("#check_in").val();
+        if (check_in != '' && check_out != '') {
+            getAvaility(check_in, check_out, hut_id);
+        }
+    };
+
+
 
     function getAvaility(check_in, check_out, hut_id) {
         $.ajax({
@@ -409,7 +420,7 @@
             success: function(data) {
                 $(".available_hut").html('Availability : <span class="text-success">' + data['available_hut'] + ' Huts</span>');
                 $("#available_hut").val(data['available_hut']);
-                // Check if check-in is after check-out
+
                 if (check_in && check_out && new Date(check_in) > new Date(check_out)) {
                     showError("Error check in sup that check out");
                     showNotification("Check-in date cannot be after check-out date.");
@@ -433,6 +444,7 @@
         $(".t_discount").text(discount_price);
         $(".t_g_total").text(sub_total - discount_price);
     }
+
 
     function showError(message) {
         $(".t_subtotal, .t_discount, .t_g_total").text(message);
