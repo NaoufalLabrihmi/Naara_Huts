@@ -14,4 +14,14 @@ class Booking extends Model
     {
         return $this->hasMany(BookingHutList::class, 'booking_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function hut()
+    {
+        return $this->belongsTo(Hut::class, 'huts_id', 'id');
+    }
 }
