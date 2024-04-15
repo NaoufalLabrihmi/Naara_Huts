@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\BookController;
-use App\Http\Controllers\Backend\HutTypeController;
-use App\Http\Controllers\Backend\TeamController;
-use App\Http\Controllers\Backend\HutController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\HutController;
+use App\Http\Controllers\Backend\BookController;
+use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\HutTypeController;
+use App\Http\Controllers\Frontend\BookingController;
 
 
 
@@ -55,5 +56,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/edit/hutno/{id}', 'EditHutNumber')->name('edit.hutno');
         Route::post('/update/hutno/{id}', 'UpdateHutNumber')->name('update.hutno');
         Route::get('/delete/hutno/{id}', 'DeleteHutNumber')->name('delete.hutno');
+    });
+
+    /// Admin Booking All Route
+    Route::controller(BookingController::class)->group(function () {
+
+        Route::get('/booking/list', 'BookingList')->name('booking.list');
+        Route::get('/edit_booking/{id}', 'EditBooking')->name('edit_booking');
     });
 });
