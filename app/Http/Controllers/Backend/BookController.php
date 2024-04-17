@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use Carbon\Carbon;
+use App\Models\Booking;
 use App\Models\BookArea;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Laravel\Facades\Image;
 

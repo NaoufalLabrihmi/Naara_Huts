@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Stripe;
 use Carbon\Carbon;
 use App\Models\Hut;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
+use App\Models\HutNumber;
 use Illuminate\Http\Request;
 use App\Models\HutBookedDate;
+use App\Models\BookingHutList;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Stripe;
 
 class BookingController extends Controller
 {
@@ -197,5 +200,138 @@ class BookingController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+
+    public function UpdateBooking(Request $request, $id)
+    {
+
+        if ($request->available_hut < $request->number_of_huts) {
+
+            $notification = array(
+                'message' => 'Something Want To Wrong!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        $data = Booking::find($id);
+        $data->number_of_huts = $request->number_of_huts;
+        $data->check_in = date('Y-m-d', strtotime($request->check_in));
+        $data->check_out = date('Y-m-d', strtotime($request->check_out));
+        $checkIn = Carbon::createFromFormat('Y-m-d', $request->check_in);
+        $checkOut = Carbon::createFromFormat('Y-m-d', $request->check_out);
+        $data->total_night = $checkIn->diffInDays($checkOut);
+        $data->subtotal = $data->actual_price * $data->total_night * $request->number_of_huts;
+        $data->discount = ($data->hut->discount / 100) * $data->subtotal;
+        $data->total_price = $data->subtotal - $data->discount;
+        $data->save();
+
+        BookingHutList::where('booking_id', $id)->delete();
+        HutBookedDate::where('booking_id', $id)->delete();
+
+        $sdate = date('Y-m-d', strtotime($request->check_in));
+        $edate = date('Y-m-d', strtotime($request->check_out));
+        $eldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate, $eldate);
+        foreach ($d_period as $period) {
+            $booked_dates = new HutBookedDate();
+            $booked_dates->booking_id = $data->id;
+            $booked_dates->hut_id = $data->huts_id;
+            $booked_dates->book_date = date('Y-m-d', strtotime($period));
+            $booked_dates->save();
+        }
+
+        $notification = array(
+            'message' => 'Booking Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function AssignHut($booking_id)
+    {
+
+        $booking = Booking::find($booking_id);
+
+        $booking_date_array = HutBookedDate::where('booking_id', $booking_id)->pluck('book_date')->toArray();
+
+        $check_date_booking_ids = HutBookedDate::whereIn('book_date', $booking_date_array)->where('hut_id', $booking->huts_id)->distinct()->pluck('booking_id')->toArray();
+
+        $booking_ids = Booking::whereIn('id', $check_date_booking_ids)->pluck('id')->toArray();
+
+        $assign_hut_ids = BookingHutList::whereIn('booking_id', $booking_ids)->pluck('hut_number_id')->toArray();
+
+        $hut_numbers = HutNumber::where('huts_id', $booking->huts_id)->whereNotIn('id', $assign_hut_ids)->where('status', 'Active')->get();
+
+        return view('backend.booking.assign_hut', compact('booking', 'hut_numbers'));
+    }
+
+    public function AssignHutStore($booking_id, $hut_number_id)
+    {
+
+        $booking = Booking::find($booking_id);
+        $check_data = BookingHutList::where('booking_id', $booking_id)->count();
+
+        if ($check_data < $booking->number_of_huts) {
+            $assign_data = new BookingHutList();
+            $assign_data->booking_id = $booking_id;
+            $assign_data->hut_id = $booking->huts_id;
+            $assign_data->hut_number_id = $hut_number_id;
+            $assign_data->save();
+
+            $notification = array(
+                'message' => 'Hut Assign Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } else {
+
+            $notification = array(
+                'message' => 'Hut Already Assign',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function AssignHutDelete($id)
+    {
+
+        $assign_hut = BookingHutList::find($id);
+        $assign_hut->delete();
+
+        $notification = array(
+            'message' => 'Assign Hut Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    public function DownloadInvoice($id)
+    {
+
+        $editData = Booking::with('hut')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice', compact('editData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function UserBooking()
+    {
+        $id = Auth::user()->id;
+        $allData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
+        return view('frontend.dashboard.user_booking', compact('allData'));
+    }
+
+    public function UserInvoice($id)
+    {
+
+        $editData = Booking::with('hut')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice', compact('editData'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
     }
 }
