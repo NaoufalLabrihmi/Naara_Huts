@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Hut;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
+use App\Mail\BookConfirm;
 use App\Models\HutNumber;
 use Illuminate\Http\Request;
 use App\Models\HutBookedDate;
@@ -14,6 +15,7 @@ use App\Models\BookingHutList;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class BookingController extends Controller
@@ -194,6 +196,20 @@ class BookingController extends Controller
         $booking->payment_status = $request->payment_status;
         $booking->status = $request->status;
         $booking->save();
+
+        /// Start Sent Email
+        $sendmail = Booking::find($id);
+
+        $data = [
+            'check_in' => $sendmail->check_in,
+            'check_out' => $sendmail->check_out,
+            'name' => $sendmail->name,
+            'email' => $sendmail->email,
+            'phone' => $sendmail->phone,
+        ];
+
+        Mail::to($sendmail->email)->send(new BookConfirm($data));
+        /// End Sent Email
 
         $notification = array(
             'message' => 'Information Updated Successfully',
