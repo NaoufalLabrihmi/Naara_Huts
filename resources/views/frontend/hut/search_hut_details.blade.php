@@ -381,7 +381,6 @@
 
     function chkininni() {
         var check_out = $("#check_out").val();
-
         var check_in = $("#check_in").val();
         if (check_in != '' && check_out != '') {
             getAvaility(check_in, check_out, hut_id);
@@ -389,7 +388,6 @@
     };
 
     function changedchekout() {
-        console.log("dkhlt")
         var check_out = $("#check_out").val();
         var check_in = $("#check_in").val();
         if (check_in != '' && check_out != '') {

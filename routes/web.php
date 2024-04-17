@@ -85,6 +85,15 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['get', 'post'], '/stripe_pay', [BookingController::class, 'stripe_pay'])->name('stripe_pay');
         // booking Update
         Route::post('/update/booking/status/{id}', 'UpdateBookingStatus')->name('update.booking.status');
+        Route::post('/update/booking/{id}', 'UpdateBooking')->name('update.booking');
+        // Assign Hut Route
+        Route::get('/assign_hut/{id}', 'AssignHut')->name('assign_hut');
+        Route::get('/assign_hut/store/{booking_id}/{hut_number_id}', 'AssignHutStore')->name('assign_hut_store');
+        Route::get('/assign_hut_delete/{id}', 'AssignHutDelete')->name('assign_hut_delete');
+
+        ////////// User Booking Route
+        Route::get('/user/booking', 'UserBooking')->name('user.booking');
+        Route::get('/user/invoice/{id}', 'UserInvoice')->name('user.invoice');
     });
 });
 

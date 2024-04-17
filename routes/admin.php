@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\HutController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\HutListController;
 use App\Http\Controllers\Backend\HutTypeController;
 use App\Http\Controllers\Frontend\BookingController;
 
@@ -63,5 +64,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
         Route::get('/booking/list', 'BookingList')->name('booking.list');
         Route::get('/edit_booking/{id}', 'EditBooking')->name('edit_booking');
+        Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
+    });
+
+    /// Admin Room List All Route
+    Route::controller(HutListController::class)->group(function () {
+        Route::get('/view/hut/list', 'ViewHutList')->name('view.hut.list');
+        Route::get('/add/hut/list', 'AddHutList')->name('add.hut.list');
+        Route::post('/store/hutlist', 'StoreHutList')->name('store.hutlist');
     });
 });

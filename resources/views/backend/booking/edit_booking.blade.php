@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <div class="page-content">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5">
@@ -124,13 +125,13 @@
                                 <tr>
                                     <td>{{ $editData->hut->type->name }}</td>
                                     <td>{{ $editData->number_of_huts }}</td>
-                                    <td>${{ $editData->actual_price }}</td>
+                                    <td>{{ $editData->actual_price }}$/1Hut</td>
                                     <td>
                                         <span class="badge bg-primary">{{ $editData->check_in }}</span> /
                                         <span class="badge bg-warning text-dark">{{ $editData->check_out }}</span>
                                     </td>
                                     <td>{{ $editData->total_night }}</td>
-                                    <td>${{ $editData->actual_price *  $editData->number_of_huts }}</td>
+                                    <td>{{ $editData->actual_price *  $editData->number_of_huts }}$/nights</td>
 
                                 </tr>
                             </tbody>
@@ -160,8 +161,36 @@
 
                         </div>
 
+                        <div style="clear: both"></div>
+                        <div style="margin-top: 40px; margin-bottom:20px;">
+                            <a href="javascript::void(0)" class="btn btn-primary assign_hut"> Assign Hut</a>
+                        </div>
 
+                        @php
+                        $assign_huts = App\Models\BookingHutList::with('hut_number')->where('booking_id',$editData->id)->get();
+                        @endphp
 
+                        @if (count($assign_huts) > 0)
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Hut Number</th>
+                                <th>Action</th>
+                            </tr>
+                            @foreach ($assign_huts as $assign_hut)
+                            <tr>
+                                <td>{{ $assign_hut->hut_number->hut_no }}</td>
+                                <td>
+                                    <a href="{{ route('assign_hut_delete',$assign_hut->id) }}" id="delete">Delete</a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </table>
+                        @else
+                        <div class="alert alert-danger text-center">
+                            Not Found Assign Room
+                        </div>
+                        @endif
                     </div>
                     {{-- // end table responsive --}}
 
@@ -190,6 +219,7 @@
 
                             <div class="col-md-12" style="margin-top: 20px;">
                                 <button type="submit" class="btn btn-primary">Update</button>
+                                <a href="{{ route('download.invoice',$editData->id) }}" class="btn btn-warning px-3 radius-10"><i class="lni lni-download"></i> Download Invoice</a>
                             </div>
 
                         </div>
@@ -211,22 +241,25 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('update.booking', $editData->id) }}" method="POST">
+                        @csrf
+
                         <div class="row">
                             <div class="col-md-12 mb-2">
                                 <label for="">CheckIn</label>
-                                <input type="date" required name="check_in" class="form-control" value="{{ $editData->check_in }}">
+                                <input type="date" required name="check_in" id="check_in" class="form-control" value="{{ $editData->check_in }}">
                             </div>
 
                             <div class="col-md-12 mb-2">
                                 <label for="">CheckOut</label>
-                                <input type="date" required name="check_out" class="form-control" value="{{ $editData->check_out }}">
+                                <input type="date" required name="check_out" id="check_out" class="form-control" value="{{ $editData->check_out }}">
                             </div>
 
                             <div class="col-md-12 mb-2">
                                 <label for="">Hut</label>
                                 <input type="number" required name="number_of_huts" class="form-control" value="{{ $editData->number_of_huts }}">
                             </div>
+                            <input type="hidden" name="available_hut" id="available_hut" class="form-control">
 
                             <div class="col-md-12 mb-2">
                                 <label for="">Availability: <span class="text-success availability"></span> </label>
@@ -279,6 +312,57 @@
         </div>
     </div>
 </div><!--end row-->
+<!-- Modal -->
+<div class="modal fade myModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Huts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
 
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<script>
+    $(document).ready(function() {
+        getAvaility();
+    });
+    $(".assign_hut").on('click', function() {
+        $.ajax({
+            url: "{{ route('assign_hut',$editData->id) }}",
+            success: function(data) {
+                console.log('hello');
+                $('.myModal .modal-body').html(data);
+
+                $('.myModal').modal('show');
+            }
+        });
+        return false;
+    });
+
+    function getAvaility() {
+        var check_in = $('#check_in').val();
+        var check_out = $('#check_out').val();
+        var hut_id = "{{ $editData->huts_id }}";
+
+
+        $.ajax({
+            url: "{{ route('check_hut_availability') }}",
+            data: {
+                hut_id: hut_id,
+                check_in: check_in,
+                check_out: check_out
+            },
+            success: function(data) {
+                $(".availability").text(data['available_hut']);
+                $("#available_hut").val(data['available_hut']);
+            }
+        });
+    }
+</script>
 
 @endsection
