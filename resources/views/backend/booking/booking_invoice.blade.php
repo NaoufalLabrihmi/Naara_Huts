@@ -69,12 +69,20 @@
         }
     </style>
     <!-- End stylesheet -->
-
+    <style>
+        * {
+            background-color: gainsboro;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
+
 
 <!-- You can change background colour here -->
 
-<body style="text-align: center; margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #c2afc496; color: #331938" align="center">
+<body style=" text-align: center; margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: gainsboro; color: #331938" align="center">
 
     <!-- Fallback force center content -->
     <div style="text-align: center;">
@@ -82,12 +90,13 @@
         <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px;" width="600px">
             <tbody>
                 <tr>
-                    <td style="width: 596px; vertical-align: top; padding-left: 0; padding-right: 0; padding-top: 15px; padding-bottom: 15px;" width="596px">
+                    <td style="width: 596px; vertical-align: top; padding-left: 95px; padding-right: 0; padding-top: 15px; padding-bottom: 15px;" width="596px">
 
                         <!-- Your logo is here -->
                         <img style="width: 180px; max-width: 180px; height: 85px; max-height: 85px; text-align: center; color: #ffffff;" alt="Logo" src="https://images.squarespace-cdn.com/content/v1/5f997ef94da0c64db54c7a8f/1606126031006-2Q0O27XG4KGW3N3IKELQ/logo_SCARABEOCAMP_black.png?format=1500w" align="center" width="180" height="85">
 
                     </td>
+
                 </tr>
             </tbody>
         </table>
@@ -95,7 +104,7 @@
 
 
         <!-- Start image -->
-        <img style="width: 600px; max-width: 600px; height: 240px; max-height: 240px; text-align: center;" alt="Image" src="https://www.inaracamp.com/wp-content/uploads/2020/09/inara-camp-cochlea-178-2.jpg" align="center" width="600" height="240">
+        <img style="width: 1000px; max-width: 1000px; height: 240px; max-height: 240px; text-align: center;" alt="Image" src="https://www.inaracamp.com/wp-content/uploads/2020/09/inara-camp-cochlea-178-2.jpg" align="center" width="600" height="240">
         <!-- End image -->
 
 
@@ -103,7 +112,7 @@
         <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 500px;" width="600">
             <tbody>
                 <tr>
-                    <td style="width: 500px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 0;" width="500">
+                    <td style="width: 700px; vertical-align: top; padding-left: 50px; padding-right: 30px; padding-top: 30px; padding-bottom: 0;" width="500">
                         <table width="100%" style="border-collapse: collapse; border: 2px solid; padding: 0 5px;" class="font">
                             <thead class="table-light">
                                 <tr>
@@ -139,7 +148,7 @@
         <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px;" width="600">
             <tbody>
                 <tr>
-                    <td style="width: 500px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 0;" width="596">
+                    <td style="width: 700px; vertical-align: top; padding-left: 50px; padding-right: 30px; padding-top: 30px; padding-bottom: 0;" width="596">
                         <table width="100%" style="border-collapse: collapse; border: 2px solid;  padding: 0 5px;" class="font">
                             <thead class="table-light">
                                 <tr>
