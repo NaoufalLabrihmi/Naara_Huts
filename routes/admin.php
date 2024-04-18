@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\HutController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\HutListController;
 use App\Http\Controllers\Backend\HutTypeController;
 use App\Http\Controllers\Backend\SettingController;
@@ -91,5 +92,17 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
         Route::post('/update/testimonial', 'UpdateTestimonial')->name('testimonial.update');
         Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
+    });
+
+    /// Booking Report All Route
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/booking/report/', 'BookingReport')->name('booking.report');
+        Route::post('/search-by-date', 'SearchByDate')->name('search-by-date');
+    });
+
+    /// Site Setting All Route
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/site/setting', 'SiteSetting')->name('site.setting');
+        Route::post('/site/update', 'SiteUpdate')->name('site.update');
     });
 });
