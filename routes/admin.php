@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\HutListController;
 use App\Http\Controllers\Backend\HutTypeController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Frontend\BookingController;
 
 
@@ -72,5 +73,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/view/hut/list', 'ViewHutList')->name('view.hut.list');
         Route::get('/add/hut/list', 'AddHutList')->name('add.hut.list');
         Route::post('/store/hutlist', 'StoreHutList')->name('store.hutlist');
+    });
+
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/smtp/setting', 'SmtpSetting')->name('smtp.setting');
+        Route::post('/smtp/update', 'SmtpUpdate')->name('smtp.update');
     });
 });
