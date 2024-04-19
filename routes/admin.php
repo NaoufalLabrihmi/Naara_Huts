@@ -117,5 +117,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/update/gallery', 'UpdateGallery')->name('update.gallery');
         Route::get('/delete/gallery/{id}', 'DeleteGallery')->name('delete.gallery');
         Route::post('/delete/gallery/multiple', 'DeleteGalleryMultiple')->name('delete.gallery.multiple');
+        // contact message admin view
+        Route::get('/contact/message', 'AdminContactMessage')->name('contact.message');
+    });
+
+    /// Notification All Route
+    Route::controller(BookingController::class)->group(function () {
+
+        Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
     });
 });
