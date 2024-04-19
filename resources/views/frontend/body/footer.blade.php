@@ -26,7 +26,7 @@ $setting = App\Models\SiteSetting::find(1);
                             </li>
                             <li>
                                 <i class='bx bx-envelope'></i>
-                                <a href="mailto:hello@atoli.com">hello@atoli.com</a>
+                                <a href="mailto:{{$setting->email}}">{{$setting->email}}</a>
                             </li>
                         </ul>
                     </div>
@@ -120,7 +120,7 @@ $setting = App\Models\SiteSetting::find(1);
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="footer-widget">
                         <h3>Newsletter</h3>
                         <p>
@@ -146,7 +146,7 @@ $setting = App\Models\SiteSetting::find(1);
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
