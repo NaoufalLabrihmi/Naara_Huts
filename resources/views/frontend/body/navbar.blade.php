@@ -40,8 +40,8 @@ $setting = App\Models\SiteSetting::find(1);
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Recreation
+                            <a href="{{ route('show.gallery') }}" class="nav-link">
+                                Gallery
                             </a>
 
                         </li>

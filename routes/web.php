@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Frontend\BookingController;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\FrontendHutController;
-use App\Models\Booking;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/booking', 'UserBooking')->name('user.booking');
         Route::get('/user/invoice/{id}', 'UserInvoice')->name('user.invoice');
     });
+});
+
+Route::controller(GalleryController::class)->group(function () {
+    Route::get('/gallery', 'ShowGallery')->name('show.gallery');
 });
 
 //// adminn
