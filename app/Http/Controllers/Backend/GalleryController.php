@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use Carbon\Carbon;
+use App\Models\Contact;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Laravel\Facades\Image;
 
 use function PHPUnit\Framework\fileExists;
+use Intervention\Image\Laravel\Facades\Image;
 
 class GalleryController extends Controller
 {
@@ -122,5 +123,38 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::latest()->get();
         return view('frontend.gallery.show_gallery', compact('gallery'));
+    }
+
+    public function ContactUs()
+    {
+
+        return view('frontend.contact.contact_us');
+    }
+
+    public function StoreContactUs(Request $request)
+    {
+
+        Contact::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Your Message Send Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function AdminContactMessage()
+    {
+
+        $contact = Contact::latest()->get();
+        return view('backend.contact.contact_message', compact('contact'));
     }
 }
