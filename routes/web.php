@@ -100,6 +100,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::controller(GalleryController::class)->group(function () {
     Route::get('/gallery', 'ShowGallery')->name('show.gallery');
+
+    // Contact All Route
+    Route::get('/contact', 'ContactUs')->name('contact.us');
+    Route::post('/store/contact', 'StoreContactUs')->name('store.contact');
 });
+
+
 
 //// adminn
