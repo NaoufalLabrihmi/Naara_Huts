@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Stripe;
 use Carbon\Carbon;
 use App\Models\Hut;
+use App\Models\User;
 use App\Models\Booking;
 use Carbon\CarbonPeriod;
 use App\Mail\BookConfirm;
@@ -16,7 +17,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\BookingComplete;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
 
 class BookingController extends Controller
 {
@@ -72,6 +75,8 @@ class BookingController extends Controller
 
     public function CheckoutStore(Request $request)
     {
+
+        $user = User::where('role', 'admin')->get();
 
         $this->validate($request, [
             'name' => 'required',
@@ -171,6 +176,9 @@ class BookingController extends Controller
             'message' => 'Booking Added Successfully',
             'alert-type' => 'success'
         );
+
+        Notification::send($user, new BookingComplete($request->name));
+
         return redirect('/')->with($notification);
     }
 
@@ -349,5 +357,18 @@ class BookingController extends Controller
             'chroot' => public_path(),
         ]);
         return $pdf->download('invoice.pdf');
+    }
+
+    public function MarkAsRead(Request $request, $notificationId)
+    {
+
+        $user = Auth::user();
+        $notification = $user->notifications()->where('id', $notificationId)->first();
+
+        if ($notification) {
+            $notification->markAsRead();
+        }
+
+        return response()->json(['count' => $user->unreadNotifications()->count()]);
     }
 }
