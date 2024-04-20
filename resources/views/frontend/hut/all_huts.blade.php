@@ -28,23 +28,46 @@
         <div class="row pt-45">
 
             @foreach ($huts as $item)
-            <div class="col-lg-4 col-md-6">
-                <div class="room-card">
-                    <a href="{{url('hut/details/'.$item->id)}}">
-                        <img src="{{ asset( 'upload/hutimg/'.$item->image ) }}" alt="Images" style="width: 550px; height:300px;">
-                    </a>
-                    <div class="content">
-                        <h6><a href="{{url('hut/details/'.$item->id)}}">{{ $item['type']['name'] }}</a></h6>
-                        <ul>
-                            <li class="text-color">${{ $item->price }}</li>
-                            <li class="text-color">Per Night</li>
-                        </ul>
-                        <div class="rating text-color">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
+
+            <div class="col-lg-6">
+                <div class="room-card-two">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-md-4 p-0">
+                            <div class="room-card-img">
+                                <a href="{{url('hut/details/'.$item->id)}}">
+                                    <img src="{{ asset( 'upload/hutimg/'.$item->image ) }}" alt="Images">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-md-8 p-0">
+                            <div class="room-card-content">
+                                <h3>
+                                    <a href="{{url('hut/details/'.$item->id)}}">{{ $item['type']['name'] }}</a>
+                                </h3>
+                                <span>{{ $item->price }}$ / Per Night </span>
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                                <p>{{ $item->short_desc }}</p>
+                                <ul>
+                                    <li><i class='bx bx-user'></i> {{ $item->hut_capacity }}</li>
+                                    <li><i class='bx bx-expand'></i> {{ $item->size  }}ft2</li>
+                                </ul>
+
+                                <ul>
+                                    <li><i class='bx bx-show-alt'></i> {{ $item->view }}</li>
+                                    <li><i class='bx bxs-hotel'></i> {{ $item->bed_style }}</li>
+                                </ul>
+
+                                <a href="" class="book-more-btn">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
