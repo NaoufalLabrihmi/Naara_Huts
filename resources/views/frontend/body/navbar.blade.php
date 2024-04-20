@@ -1,6 +1,7 @@
 @php
 $setting = App\Models\SiteSetting::find(1);
 @endphp
+
 <div class="navbar-area">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
@@ -33,23 +34,12 @@ $setting = App\Models\SiteSetting::find(1);
                                 About
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Restaurant
-                            </a>
-                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('show.gallery') }}" class="nav-link">
                                 Gallery
                             </a>
 
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Blog
-                            </a>
                         </li>
                         @php
                         $hut = App\Models\hut::latest()->get();
