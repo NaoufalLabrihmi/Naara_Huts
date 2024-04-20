@@ -7,7 +7,7 @@ template.
 
 *******************************************
 *******************************************
-** - Default Btn Style 
+** - Default Btn Style
 ** - Section Title Style
 ** - Top Header Style
 ** - Navbar Area Style
@@ -157,7 +157,7 @@ img {
 }
 
 /*================================
-Default Btn Style 
+Default Btn Style
 ===================================*/
 .default-btn {
   display: inline-block;
@@ -214,7 +214,7 @@ Default Btn Style
 }
 
 .btn-bg-one {
-  background-color: #B56952;
+  background-color: #000000bd;
 }
 
 .btn-bg-two {
@@ -229,7 +229,7 @@ Default Btn Style
 Default Btn Style End
 ===================================*/
 /*================================
-Section Title Style 
+Section Title Style
 ===================================*/
 .section-title span {
   line-height: 0;
@@ -268,7 +268,7 @@ Top Header
 }
 
 .top-header-bg {
-  background-color: #1B2132;
+  background-color: black;
 }
 
 .header-right {
@@ -1201,12 +1201,27 @@ Sidebar Modal
 Main Banner Area
 ====================================*/
 .banner-area {
-  background-image: url(../img/home-one.jpg);
+  /* background-image: url(../img/home-three.jpg); */
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   z-index: 1;
+  .banner-area {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.banner-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 }
 
 .banner-area::before {
@@ -1325,7 +1340,7 @@ Main Banner Area
 Main Banner Area End
 ====================================*/
 /*=================================
-Banner Form Area 
+Banner Form Area
 ====================================*/
 .banner-form {
   position: relative;
@@ -1517,11 +1532,17 @@ Inner Banner
 }
 
 .inner-bg2 {
-  background-image: url(../img/inner-banner/inner-banner2.jpg);
-}
+    background-image: url(../img/inner-banner/wallpaper2you_305558.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+      background-position: center;
+  }
 
 .inner-bg3 {
-  background-image: url(../img/inner-banner/inner-banner3.jpg);
+  background-image: url(../img/inner-banner/atardecer-en-la-playa-9102.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-position: center;
 }
 
 .inner-bg4 {
@@ -1545,11 +1566,17 @@ Inner Banner
 }
 
 .inner-bg9 {
-  background-image: url(../img/inner-banner/inner-banner9.jpg);
+  background-image: url(../img/inner-banner/wallpaper2you_305529.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-position: center;
 }
 
 .inner-bg10 {
-  background-image: url(../img/inner-banner/inner-banner10.jpg);
+  background-image: url(../img/inner-banner/wallpaper2you_305533.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-position: center;
 }
 
 .inner-bg11 {
@@ -1561,7 +1588,7 @@ Inner Banner
 }
 
 /*=================================
-About Area 
+About Area
 ====================================*/
 .about-img {
   max-width: 540px;
@@ -1928,7 +1955,7 @@ Gallery Area
 Gallery Area End
 ====================================*/
 /*=================================
-Services Area 
+Services Area
 ====================================*/
 .services-area {
   position: relative;
@@ -2411,7 +2438,7 @@ Services Area
 Services Area End
 ====================================*/
 /*=================================
-Reservation Area 
+Reservation Area
 ====================================*/
 .reservation-content {
   margin-bottom: 30px;
@@ -2521,7 +2548,7 @@ Reservation Area
 Reservation Area End
 ====================================*/
 /*=================================
-Ability Area 
+Ability Area
 ====================================*/
 .ability-content .section-title {
   margin-bottom: 30px;
@@ -2608,7 +2635,7 @@ Ability Area
 Ability Area End
 ====================================*/
 /*=================================
-Specialty Area 
+Specialty Area
 ====================================*/
 .specialty-area .section-title h2 {
   max-width: 540px;
@@ -3708,7 +3735,7 @@ Testimonials Area
 Testimonials Area End
 ====================================*/
 /*=================================
-Faq Area 
+Faq Area
 ====================================*/
 .faq-img {
   margin-bottom: 30px;
@@ -3861,7 +3888,7 @@ Faq Area
 Faq Area End
 ====================================*/
 /*=================================
-Contact Area 
+Contact Area
 ====================================*/
 .contact-content .section-title {
   margin-bottom: 30px;
@@ -4062,7 +4089,7 @@ Contact Area
 Contact Area End
 ====================================*/
 /*=================================
-Map Area 
+Map Area
 ====================================*/
 .map-area iframe {
   display: block;
@@ -4127,7 +4154,7 @@ User All Form
 User All Form End
 ====================================*/
 /*=================================
-Team Area 
+Team Area
 ====================================*/
 .team-area .section-title h2 {
   max-width: 640px;
@@ -4623,7 +4650,7 @@ Booking Area
 Booking Area End
 ====================================*/
 /*=================================
-Checkout Area 
+Checkout Area
 ===================================*/
 .billing-details {
   margin-bottom: 30px;
@@ -5531,7 +5558,7 @@ Blog Area
 Blog Area End
 ====================================*/
 /*=================================
-Restaurant Item 
+Restaurant Item
 ====================================*/
 .restaurant-item {
   padding: 20px;
@@ -5577,7 +5604,7 @@ Restaurant Item
 Restaurant Item End
 ====================================*/
 /*==============================
-Pagination Area 
+Pagination Area
 =================================*/
 .pagination-area {
   margin-top: 10px;
@@ -5660,8 +5687,8 @@ Pagination Area End
 /*=================================
 404 Error Area End
 ===================================*/
-/*================================== 
-Coming Soon Area 
+/*==================================
+Coming Soon Area
 ====================================*/
 .coming-soon-area {
   position: relative;
@@ -5851,7 +5878,7 @@ Coming Soon Area
   color: #dc3545 !important;
 }
 
-/*================================== 
+/*==================================
 Coming Soon Area End
 ====================================*/
 /*=================================
@@ -6054,7 +6081,7 @@ Footer Area
 Footer Area End
 ====================================*/
 /*==================================
-Back To Top Button 
+Back To Top Button
 =====================================*/
 #toTop {
   position: fixed;
@@ -6088,7 +6115,7 @@ Back To Top Button
 }
 
 /*==============================
-Back To Top Button 
+Back To Top Button
 =================================*/
 /*=================================
 Buy Now Btn
@@ -6129,7 +6156,7 @@ Buy Now Btn
 Buy Now Btn End
 ====================================*/
 /*==============================
-PreLoader CSS 
+PreLoader CSS
 =================================*/
 .preloader {
   background: #1B2132;
