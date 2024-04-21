@@ -11,6 +11,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
+        @can('dashboard')
         <li>
             <a href="{{ route('admin.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
@@ -18,6 +19,8 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+        @endcan
+        @can('team')
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -31,45 +34,48 @@
                 </li>
             </ul>
         </li>
+        @endcan
+        @can('bookarea')
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
+                <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">Manage Book Area</div>
             </a>
             <ul>
-                <li> <a href="{{ route('book.area') }}"><i class='bx bx-radio-circle'></i>Update BookArea</a>
-                </li>
+                <li> <a href="{{ route('book.area') }}"><i class='bx bx-radio-circle'></i>Update BookArea</a></li>
             </ul>
         </li>
+        @endcan
+
+        @can('huts')
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
-                </div>
+                <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">Manage Hut Type</div>
             </a>
             <ul>
-                <li> <a href="{{ route('hut.type.list') }}"><i class='bx bx-radio-circle'></i>Hut Type List</a>
-                </li>
-                <li> <a href="{{ route('add.hut.type') }}"><i class='bx bx-radio-circle'></i>Add Hut Type</a>
-                </li>
+                <li> <a href="{{ route('hut.type.list') }}"><i class='bx bx-radio-circle'></i>Hut Type List</a></li>
+                <li> <a href="{{ route('add.hut.type') }}"><i class='bx bx-radio-circle'></i>Add Hut Type</a></li>
             </ul>
         </li>
-        <li class="menu-label">Booking Manage </li>
+        @endcan
+
+        @can('booking')
+        <li class="menu-label">Booking Manage</li>
 
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
-                </div>
-                <div class="menu-title">Booking </div>
+                <div class="parent-icon"><i class='bx bx-cart'></i></div>
+                <div class="menu-title">Booking</div>
             </a>
             <ul>
-                <li> <a href="{{ route('booking.list') }}"><i class='bx bx-radio-circle'></i>Booking List </a>
-                </li>
-                <li> <a href="{{ route('add.hut.list') }}"><i class='bx bx-radio-circle'></i>Add Booking </a>
-                </li>
+                <li> <a href="{{ route('booking.list') }}"><i class='bx bx-radio-circle'></i>Booking List </a></li>
+                <li> <a href="{{ route('add.hut.list') }}"><i class='bx bx-radio-circle'></i>Add Booking </a></li>
             </ul>
         </li>
+        @endcan
+
+        @can('hutlist')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -82,7 +88,8 @@
                 </li>
             </ul>
         </li>
-
+        @endcan
+        @can('setting')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -96,6 +103,8 @@
                 </li>
             </ul>
         </li>
+        @endcan
+        @can('tesimonial')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -112,6 +121,7 @@
 
             </ul>
         </li>
+        @endcan
         @can('report')
         <li>
             <a class="has-arrow" href="javascript:;">
@@ -126,6 +136,7 @@
             </ul>
         </li>
         @endcan
+        @can('gallery')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -138,6 +149,8 @@
 
             </ul>
         </li>
+        @endcan
+        @can('contact')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -150,14 +163,23 @@
 
             </ul>
         </li>
-        <li class="menu-label">Others</li>
+        @endcan
+        @can('roles')
         <li>
-            <a href="https://themeforest.net/user/codervent" target="_blank">
-                <div class="parent-icon"><i class="bx bx-support"></i>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
                 </div>
-                <div class="menu-title">Support</div>
+                <div class="menu-title">Manage Roles And Permissions </div>
             </a>
+            <ul>
+                <li> <a href="{{ route('roles.index') }}"><i class='bx bx-radio-circle'></i>Roles With Permissions </a>
+                </li>
+                <li> <a href="{{ route('roles.create') }}"><i class='bx bx-radio-circle'></i>Add Role </a>
+                </li>
+
+            </ul>
         </li>
+        @endcan
     </ul>
     <!--end navigation-->
 </div>
