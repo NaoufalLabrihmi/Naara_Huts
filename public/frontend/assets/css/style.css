@@ -1509,7 +1509,7 @@ Inner Banner
 }
 
 .inner-banner .inner-title ul li a:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .inner-banner .inner-title ul li i {
@@ -1555,7 +1555,10 @@ Inner Banner
 }
 
 .inner-bg6 {
-  background-image: url(../img/inner-banner/inner-banner6.jpg);
+  background-image: url(../img/inner-banner/24634_8_lizardisland_fsa-g.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-position: center;
 }
 
 .inner-bg7 {
@@ -1828,7 +1831,7 @@ Choose Area
   height: 90px;
   background-color: #ffffff;
   font-size: 45px;
-  color: #EE786C;
+  color: #595f39;
   border-radius: 50px;
   line-height: 90px;
   display: inline-block;
@@ -1847,12 +1850,12 @@ Choose Area
 .choose-card .read-btn {
   padding: 6px 16px;
   color: #292323;
-  border: 1px solid #EE786C;
+  border: 1px solid #595f39;
 }
 
 .choose-card .read-btn:hover {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 /*=================================
@@ -1884,17 +1887,17 @@ Gallery Area
 
 .gallery-tab .tabs li a:focus {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .gallery-tab .tabs li.active a {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .gallery-tab .tabs li.current a {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .single-gallery {
@@ -1924,7 +1927,7 @@ Gallery Area
   width: 40px;
   height: 40px;
   line-height: 45px;
-  background-color: #EE786C;
+  background-color: #595f39;
   -webkit-transform: scale(0);
           transform: scale(0);
   -webkit-transition: .7s;
@@ -1947,7 +1950,7 @@ Gallery Area
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid #EE786C;
+  border: 1px solid #595f39;
   -webkit-animation: scale 1s linear 2s infinite;
           animation: scale 1s linear 2s infinite;
 }
@@ -2194,12 +2197,12 @@ Services Area
 
 .service-item-two:hover .read-btn {
   color: #ffffff !important;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .service-item-two i {
   font-size: 75px;
-  color: #EE786C;
+  color: #595f39;
   position: absolute;
   top: 30px;
   left: 30px;
@@ -2226,12 +2229,12 @@ Services Area
 .service-item-two .content .read-btn {
   padding: 6px 16px;
   color: #292323;
-  border: 1px solid #EE786C;
+  border: 1px solid #595f39;
 }
 
 .service-item-two .content .read-btn:hover {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .service-article .service-article-img {
@@ -2267,7 +2270,7 @@ Services Area
   text-align: center;
   font-size: 120px;
   font-weight: 400;
-  color: #EE786C;
+  color: #595f39;
   font-family: Flaticon;
   line-height: 0;
   opacity: 0.2;
@@ -2283,7 +2286,7 @@ Services Area
   text-align: center;
   font-size: 50px;
   font-weight: 400;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .service-article .service-article-content .blockquote p {
@@ -2325,7 +2328,7 @@ Services Area
 }
 
 .service-article .service-facility-content ul li:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .service-article .service-facility-content ul li:hover i {
@@ -2333,7 +2336,7 @@ Services Area
 }
 
 .service-article .service-facility-content ul li i {
-  color: #EE786C;
+  color: #595f39;
   margin-right: 10px;
 }
 
@@ -2375,7 +2378,7 @@ Services Area
 }
 
 .services-bar-widget .side-bar-categories ul li:hover {
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .services-bar-widget .side-bar-categories ul li a {
@@ -2410,7 +2413,7 @@ Services Area
 }
 
 .services-bar-widget .side-bar-list ul li:hover {
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .services-bar-widget .side-bar-list ul li a {
@@ -2489,17 +2492,17 @@ Reservation Area
 
 .reservation-tab .tabs li a:focus {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .reservation-tab .tabs li.active a {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .reservation-tab .tabs li.current a {
   color: #ffffff;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .tab .tabs_item {
@@ -2624,7 +2627,7 @@ Ability Area
   top: 30px;
   width: 70%;
   height: 90%;
-  background-color: #EE786C;
+  background-color: #595f39;
   border-radius: 50px;
 }
 
@@ -3104,7 +3107,7 @@ Room Area
   position: absolute;
   top: 60%;
   right: 10px;
-  color: #EE786C;
+  color: #595f39    ;
 }
 
 .side-bar-form .form-group label {
@@ -3181,7 +3184,7 @@ Room Area
 .side-bar-form .nice-select::after {
   height: 8px;
   width: 8px;
-  border-color: #EE786C;
+  border-color: #595f39;
   right: auto;
   top: 45%;
   right: 20px;
@@ -3219,8 +3222,8 @@ Room Area
 }
 
 .side-bar-plan ul li:hover {
-  background-color: #EE786C;
-  border-color: #EE786C;
+  background-color: #595f39;
+  border-color: #595f39;
 }
 
 .side-bar-plan ul li a {
@@ -3320,7 +3323,7 @@ Room Area
 }
 
 .room-details-title ul li:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .room-details-title ul li:last-child {
@@ -3353,7 +3356,7 @@ Room Area
 }
 
 .room-details-review .review-ratting i {
-  color: #EE786C;
+  color: #595f39;
   display: inline-block;
 }
 
@@ -3913,7 +3916,7 @@ Contact Area
   left: -30px;
   width: 70%;
   height: 87%;
-  background-color: #EE786C;
+  background-color: #595f39;
   border-radius: 50px;
 }
 
@@ -3949,7 +3952,7 @@ Contact Area
 }
 
 .contact-form .form-group.checkbox-option p a {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .contact-form .form-group.checkbox-option p a:hover {
@@ -4051,7 +4054,7 @@ Contact Area
   height: 70px;
   line-height: 70px;
   background-color: #ffffff;
-  color: #EE786C;
+  color: #595f39;
   font-size: 40px;
   text-align: center;
   border-radius: 5px;
@@ -4075,7 +4078,7 @@ Contact Area
 }
 
 .contact-item ul li .content span a:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .contact-another-img {
@@ -4133,7 +4136,7 @@ User All Form
 }
 
 .user-all-form .contact-form .forget:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .user-all-form .contact-form .account-desc {
@@ -4148,7 +4151,7 @@ User All Form
 }
 
 .user-all-form .contact-form .account-desc a:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 /*=================================
@@ -4683,7 +4686,7 @@ Checkout Area
 }
 
 .billing-details .form-group label span {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .billing-details .form-group .form-control {
@@ -4828,7 +4831,7 @@ Checkout Area
   content: '';
   width: 12px;
   height: 12px;
-  background: #EE786C;
+  background: #595f39;
   position: absolute;
   top: 6px;
   left: 3px;
@@ -4895,7 +4898,7 @@ Checkout Area
   position: relative;
   overflow: hidden;
   z-index: 1;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .payment-box .order-btn::before {
@@ -4906,7 +4909,7 @@ Checkout Area
   left: 0;
   width: 0;
   height: 100%;
-  background-color: #C890FF;
+  background-color: #1B1B1B;
   z-index: -1;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -5142,7 +5145,7 @@ Blog Area
   z-index: 1;
   font-size: 15px;
   border-radius: 5px;
-  border: 1px solid #EE786C;
+  border: 1px solid #595f39;
 }
 
 .blog-item .content .read-btn::before {
@@ -5152,7 +5155,7 @@ Blog Area
   left: 0%;
   width: 0;
   height: 50%;
-  background-color: #EE786C;
+  background-color: #595f39;
   z-index: -1;
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
@@ -5166,7 +5169,7 @@ Blog Area
   right: 0%;
   width: 0;
   height: 50%;
-  background-color: #EE786C;
+  background-color: #595f39;
   z-index: -1;
   opacity: 0;
   -webkit-transition: all 0.8s;
@@ -5199,7 +5202,7 @@ Blog Area
 
 .blog-article .blog-article-title {
   margin-bottom: 30px;
-  border-bottom: 1px solid #EE786C;
+  border-bottom: 1px solid #595f39;
   padding-bottom: 15px;
 }
 
@@ -5223,7 +5226,7 @@ Blog Area
 }
 
 .blog-article .blog-article-title ul li i {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .blog-article .blog-article-title ul li:last-child {
@@ -5253,7 +5256,7 @@ Blog Area
   text-align: center;
   font-size: 120px;
   font-weight: 400;
-  color: #EE786C;
+  color: #595f39;
   font-family: Flaticon;
   line-height: 0;
   opacity: 0.2;
@@ -5269,7 +5272,7 @@ Blog Area
   text-align: center;
   font-size: 50px;
   font-weight: 400;
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 .blog-article .article-content .blockquote p {
@@ -5346,7 +5349,7 @@ Blog Area
   position: absolute;
   top: 27px;
   right: 30px;
-  color: #EE786C;
+  color: #595f39;
   font-weight: 600;
 }
 
@@ -5411,7 +5414,7 @@ Blog Area
   right: 0;
   height: 50px;
   width: 50px;
-  background-color: #EE786C;
+  background-color: #595f39;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   border: none;
@@ -5506,7 +5509,7 @@ Blog Area
 }
 
 .side-bar-widget .widget-popular-post .item .info .title-text a:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .side-bar-widget .widget-popular-post .item .info ul {
@@ -5543,8 +5546,8 @@ Blog Area
 }
 
 .side-bar-widget .side-bar-widget-tag li:hover {
-  background-color: #EE786C;
-  border-color: #EE786C;
+  background-color: #595f39;
+  border-color: #595f39;
 }
 
 .side-bar-widget .side-bar-widget-tag li a {
@@ -5588,7 +5591,7 @@ Restaurant Item
 }
 
 .restaurant-item .restaurant-content h3 a:hover {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .restaurant-item .restaurant-content p {
@@ -5597,7 +5600,7 @@ Restaurant Item
 
 .restaurant-item .restaurant-content h4 {
   font-size: 30px;
-  color: #EE786C;
+  color: #595f39;
   margin-bottom: 0;
 }
 
@@ -5617,7 +5620,7 @@ Pagination Area
   width: 40px;
   height: 40px;
   line-height: 40px;
-  color: #EE786C;
+  color: #595f39;
   background-color: #F5F5F5;
   text-align: center;
   display: inline-block;
@@ -5629,7 +5632,7 @@ Pagination Area
 }
 
 .pagination-area .page-numbers:hover {
-  background-color: #EE786C;
+  background-color: #595f39;
   color: #ffffff;
 }
 
@@ -5640,7 +5643,7 @@ Pagination Area
 }
 
 .pagination-area .page-numbers.current {
-  background-color: #EE786C;
+  background-color: #595f39;
   color: #ffffff;
 }
 
@@ -5665,7 +5668,7 @@ Pagination Area End
 }
 
 .error-area .error-content h1 span {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .error-area .error-content h3 {
@@ -5860,7 +5863,7 @@ Coming Soon Area
   height: 45px;
   line-height: 50px;
   font-size: 18px;
-  background-color: #EE786C;
+  background-color: #595f39;
   color: #ffffff;
   border-radius: 50px;
   margin-right: 10px;

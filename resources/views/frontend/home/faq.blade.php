@@ -14,7 +14,7 @@
                             <li class="accordion-item">
                                 <a class="accordion-title" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    How I Will Book a Room or Resort?
+                                    How I Will Book a Hut or Resort?
                                 </a>
 
                                 <div class="accordion-content">
@@ -59,7 +59,7 @@
                             <li class="accordion-item">
                                 <a class="accordion-title active" href="javascript:void(0)">
                                     <i class='bx bx-plus'></i>
-                                    How I Will Make Payment for Room Book?
+                                    How I Will Make Payment for Hut Book?
                                 </a>
 
                                 <div class="accordion-content show">
