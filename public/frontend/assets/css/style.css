@@ -214,7 +214,7 @@ Default Btn Style
 }
 
 .btn-bg-one {
-  background-color: #000000bd;
+  background-color: #595f39;
 }
 
 .btn-bg-two {
@@ -222,7 +222,7 @@ Default Btn Style
 }
 
 .btn-bg-three {
-  background-color: #EE786C;
+  background-color: #595f39;
 }
 
 /*================================
@@ -236,7 +236,8 @@ Section Title Style
   text-transform: capitalize;
   padding-bottom: 5px;
   margin: 0;
-  color: #B56952;
+  color: #595f39;
+  font-size: xx-large;
 }
 
 .section-title h2 {
@@ -244,7 +245,7 @@ Section Title Style
   font-weight: 600;
   margin-top: 0;
   line-height: 1.4;
-  color: #292323;
+  color: #1B1B1B;
   margin-bottom: 0;
 }
 
@@ -254,7 +255,7 @@ Section Title Style
 }
 
 .sp-color {
-  color: #EE786C !important;
+  color: #595f39 !important;
 }
 
 /*================================
@@ -268,7 +269,7 @@ Top Header
 }
 
 .top-header-bg {
-  background-color: black;
+  background-color: #1B1B1B;
 }
 
 .header-right {
@@ -326,7 +327,7 @@ Top Header
 .header-right ul li a {
   display: inline-block;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   margin-left: 25px;
 }
@@ -474,11 +475,11 @@ Navbar Area
 }
 
 .main-nav nav .navbar-nav .nav-item a:hover, .main-nav nav .navbar-nav .nav-item a :focus {
-  color: #B56952 !important;
+  color: #595f39 !important;
 }
 
 .main-nav nav .navbar-nav .nav-item a.active {
-  color: #B56952 !important;
+  color: #595f39 !important;
 }
 
 .main-nav nav .navbar-nav .nav-item a .active::before {
@@ -600,27 +601,27 @@ Navbar Area
 }
 
 .nav-three nav .navbar-nav .nav-item:hover a, .nav-three nav .navbar-nav .nav-item .active {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .nav-three nav .navbar-nav .nav-item a:hover, .nav-three nav .navbar-nav .nav-item a :focus {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .nav-three nav .navbar-nav .nav-item a.active {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .nav-three nav .navbar-nav .nav-item .dropdown-menu li a.active {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .nav-three nav .navbar-nav .nav-item .dropdown-menu li a:hover, .nav-three nav .navbar-nav .nav-item .dropdown-menu li a :focus, .nav-three nav .navbar-nav .nav-item .dropdown-menu li a .active {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .nav-three nav .navbar-nav .nav-item .dropdown-menu li.active {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 .side-nav-responsive {
@@ -2532,11 +2533,11 @@ Reservation Area
 }
 
 .reservation-room .content p {
-  border-bottom: 1px solid #EE786C !important;
+  border-bottom: 1px solid #595f39!important;
 }
 
 .reservation-room .content .book-btn {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
   border-radius: 0 !important;
 }
 
@@ -2628,7 +2629,7 @@ Ability Area
 }
 
 .text-color {
-  color: #EE786C !important;
+  color: #595f39!important;
 }
 
 /*=================================
@@ -3025,12 +3026,12 @@ Room Area
 }
 
 .room-card-two .room-card-content span {
-  color: #EE786C;
+  color: #595f39;
 }
 
 .room-card-two .room-card-content .rating {
   font-size: 16px;
-  color: #EE786C;
+  color: #595f39;
   display: inline-block;
   position: absolute;
   top: 44px;
@@ -3062,7 +3063,7 @@ Room Area
 
 .room-card-two .room-card-content ul li i {
   font-size: 18px;
-  color: #EE786C;
+  color: #595f39;
   margin-right: 5px;
   position: relative;
   top: 3px;
@@ -3071,7 +3072,7 @@ Room Area
 .room-card-two .room-card-content .book-more-btn {
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #EE786C;
+  background-color: #595f39;
   padding: 6px 18px;
   color: #ffffff;
 }
@@ -3257,7 +3258,7 @@ Room Area
 
 .room-details-slider .owl-nav .owl-prev:hover {
   color: #ffffff !important;
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .room-details-slider .owl-nav .owl-next {
@@ -3280,7 +3281,7 @@ Room Area
 
 .room-details-slider .owl-nav .owl-next:hover {
   color: #ffffff !important;
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .room-details-item {
@@ -3651,11 +3652,11 @@ Testimonials Area
 }
 
 .testimonials-area-another .owl-dots .owl-dot.active span {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .testimonials-area-another .owl-dots .owl-dot:hover span {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .testimonials-area-three {
@@ -3673,18 +3674,18 @@ Testimonials Area
 }
 
 .testimonials-slider-area .owl-dots .owl-dot span {
-  background-color: #ee786c87 !important;
+  background-color: #595f39 !important;
   -webkit-transition: 0.7s;
   transition: 0.7s;
   margin: 0 7px;
 }
 
 .testimonials-slider-area .owl-dots .owl-dot.active span {
-  background-color: #EE786C !important;
+  background-color: #595f39 !important;
 }
 
 .testimonials-slider-area .owl-dots .owl-dot:hover span {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .testimonials-slider-content {
@@ -3693,7 +3694,7 @@ Testimonials Area
 }
 
 .testimonials-slider-content i {
-  color: #EE786C;
+  color: #595f39;
   font-size: 40px;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -4235,7 +4236,7 @@ Team Area
 }
 
 .team-item .content {
-  background-color: #F5F5F5;
+  background-color: #C4C5BA;
   padding: 20px;
   position: absolute;
   bottom: -45px;
@@ -4253,11 +4254,11 @@ Team Area
 }
 
 .team-item .content h3 a {
-  color: #292323;
+  color: #1B1B1B;
 }
 
 .team-item .content span {
-  color: #555555;
+  color: #1B1B1B;
 }
 
 .team-item .content .social-link {
@@ -4464,11 +4465,11 @@ Team Area
 }
 
 .team-area-three .owl-dots .owl-dot.active span {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .team-area-three .owl-dots .owl-dot:hover span {
-  background-color: #EE786C !important;
+  background-color: #595f39!important;
 }
 
 .team-style-area .section-title h2 {
