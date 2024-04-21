@@ -38,5 +38,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function hasAbility($permissions)
+    {
+        $role = $this->roles;
+        if (!$role) {
+            return false;
+        }
+        foreach ($role->permissions as $permission) {
+            if (is_array($permissions) && in_array($permission, $permissions)) {
+
+                return true;
+            } else if (is_string($permissions) && strcmp($permissions, $permission) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
