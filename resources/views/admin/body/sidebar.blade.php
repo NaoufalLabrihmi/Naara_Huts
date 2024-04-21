@@ -112,6 +112,7 @@
 
             </ul>
         </li>
+        @can('report')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -124,6 +125,7 @@
 
             </ul>
         </li>
+        @endcan
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
