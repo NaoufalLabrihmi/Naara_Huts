@@ -345,7 +345,13 @@ class BookingController extends Controller
     {
         $id = Auth::user()->id;
         $allData = Booking::where('user_id', $id)->orderBy('id', 'desc')->get();
-        return view('frontend.dashboard.user_booking', compact('allData'));
+
+        // Calculate counts of bookings with different statuses
+        $pendingCount = $allData->where('status', 0)->count(); // Assuming 'status' 0 means 'Pending'
+        $completeCount = $allData->where('status', 1)->count(); // Assuming 'status' 1 means 'Complete'
+        $totalCount = $allData->count();
+
+        return view('frontend.dashboard.user_booking', compact('allData', 'pendingCount', 'completeCount', 'totalCount'));
     }
 
     public function UserInvoice($id)
