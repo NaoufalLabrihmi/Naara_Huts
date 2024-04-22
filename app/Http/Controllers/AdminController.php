@@ -40,9 +40,9 @@ class AdminController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/admin_images/' . $data->photo)); // delete previous photo
+            @unlink(public_path('upload/user_images/' . $data->photo)); // delete previous photo
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'), $filename);
+            $file->move(public_path('upload/user_images'), $filename);
             $data['photo'] = $filename;
         }
         $data->save();
