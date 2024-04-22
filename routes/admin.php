@@ -28,6 +28,7 @@ Route::middleware(['auth', 'can:dashboard'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
+
     //team all Route
     Route::controller(TeamController::class)->middleware('can:team')->group(function () {
         Route::get('/all/team', 'AllTeam')->name('all.team');
@@ -141,5 +142,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/roles/store', 'Store')->name('roles.store');
         Route::get('/roles/edit/{id}', 'Edit')->name('roles.edit');
         Route::post('/roles/update/{id}', 'Update')->name('roles.update');
+        Route::get('/delete/role/{id}', 'DeleteRole')->name('delete.roles');
+
+
+        //users manage root
+        Route::get('/users', 'UsersIndex')->name('users.list');
+        Route::get('/users/create', 'UsersCreate')->name('add.users');
+        Route::post('/users/store/', 'StoreUser')->name('users.store');
+        Route::get('/users/edit/{id}', 'EditUser')->name('edit.user');
+        Route::post('/users/update', 'UpdateUser')->name('user.update');
+        Route::get('/delete/user/{id}', 'DeleteUser')->name('delete.user');
     });
 });

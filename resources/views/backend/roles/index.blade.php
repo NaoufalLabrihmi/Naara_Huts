@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('roles.edit',$item->id) }}" class="btn btn-warning rounded-pill px-4 mx-1">Edit</a>
-                                <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
+                                <a href="{{ route('delete.roles',$item->id) }}" class="btn btn-danger rounded-pill px-4 mx-1" id="delete">Delete</a>
                             </td>
                         </tr>
                         @endforeach
