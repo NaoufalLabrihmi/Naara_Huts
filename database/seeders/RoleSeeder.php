@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         // Define the permissions array
-        $permissions = ["dashboard", "team", "bookarea", "huts", "booking", "hutlist", "setting", "tesimonial", "report", "gallery", "contact", "roles"];
+        $permissions = ["dashboard", "team", "bookarea", "huts", "booking", "hutlist", "setting", "tesimonial", "report", "gallery", "contact", "roles", "users"];
 
         // Create roles and assign permissions
         Role::create([

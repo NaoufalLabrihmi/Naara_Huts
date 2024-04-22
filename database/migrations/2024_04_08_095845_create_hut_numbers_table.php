@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('hut_numbers', function (Blueprint $table) {
             $table->id();
-            $table->integer('huts_id');
-            $table->integer('hut_type_id');
+            $table->unsignedBigInteger('huts_id');
+            $table->unsignedBigInteger('hut_type_id');
             $table->string('hut_no')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
+            $table->foreign('huts_id')->references('id')->on('huts')->onDelete('cascade');
+            $table->foreign('hut_type_id')->references('id')->on('hut_types')->onDelete('cascade');
         });
     }
 
