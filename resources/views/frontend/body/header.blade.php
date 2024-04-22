@@ -24,7 +24,7 @@ $setting = App\Models\SiteSetting::find(1);
                         @auth
                         <li>
                             <i class='bx bx-user'></i>
-                            <a href="{{route('dashboard')}}">Dashboard</a>
+                            <a href="{{ route('user.booking') }}">Dashboard</a>
                         </li>
                         <li>
                             <i class='bx bx-log-out'></i>

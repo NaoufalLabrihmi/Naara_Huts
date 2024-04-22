@@ -3,9 +3,11 @@
 <div class="d-flex flex-column flex-root" id="kt_app_root">
     <div class="d-flex flex-column flex-lg-row flex-column-fluid">
         <div class="d-flex flex-column flex-lg-row-auto bg-primary w-xl-600px positon-xl-relative">
-            <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
-                <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20">
-
+            <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px ">
+                <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20" style="background-image: url({{ URL::to('frontend/assets/img/inner-banner/chloe_NOMADE_03.jpg') }})">
+                    <a href="" style="padding-top: 5rem !important;padding-bottom: 2rem">
+                        <img alt="Logo" src="{{ URL::to('frontend/assets/img/inner-banner/nara-logo-2022.png') }}" class="theme-light-show h-70px h-lg-80px">
+                    </a>
                     <h1 class="d-none d-lg-block fw-bold text-white fs-2qx pb-5 pb-md-10">
                         Welcome Back</h1>
                     <p class="d-none d-lg-block fw-semibold fs-2 text-white">
@@ -14,11 +16,10 @@
 
                     </p>
                 </div>
-                <div class="d-none d-lg-block d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url({{ URL::to('assets/media/illustrations/dozzy-1/17.png') }})"></div>
             </div>
         </div>
         <div class="d-flex flex-column flex-lg-row-fluid py-10">
-            <div class="d-flex flex-center flex-column flex-column-fluid">
+            <div class=" d-flex flex-center flex-column flex-column-fluid">
                 <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                     <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="">
                         <div class="text-center mb-10">
@@ -48,20 +49,7 @@
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
-                            <div class="text-center text-muted text-uppercase fw-bold mb-5">or</div>
-                            <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                <img alt="Logo" src="{{ URL::to('assets/media/svg/brand-logos/google-icon.svg') }}" class="h-20px me-3">
-                                Continue with Google
-                            </a>
-                            <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                <img alt="Logo" src="{{ URL::to('assets/media/svg/brand-logos/facebook-4.svg') }}" class="h-20px me-3">
-                                Continue with Facebook
-                            </a>
-                            <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
-                                <img alt="Logo" src="assets/media/svg/brand-logos/apple-black.svg" class="theme-light-show h-20px me-3">
-                                <img alt="Logo" src="{{ URL::to('assets/media/svg/brand-logos/apple-black-dark.svg') }}" class="theme-dark-show h-20px me-3">
-                                Continue with Apple
-                            </a>
+
                         </div>
                     </form>
                 </div>

@@ -3,18 +3,18 @@
 <div class="d-flex flex-column flex-root" id="kt_app_root">
     <div class="d-flex flex-column flex-lg-row flex-column-fluid">
         <div class="d-flex flex-column flex-lg-row-auto bg-primary w-xl-600px positon-xl-relative">
-            <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
-                <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20">
-
+            <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px ">
+                <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20" style="background-image: url({{ URL::to('frontend/assets/img/inner-banner/chloe_NOMADE_03.jpg') }})">
+                    <a href="" style="padding-top: 5rem !important;padding-bottom: 2rem">
+                        <img alt="Logo" src="{{ URL::to('frontend/assets/img/inner-banner/nara-logo-2022.png') }}" class="theme-light-show h-70px h-lg-80px">
+                    </a>
                     <h1 class="d-none d-lg-block fw-bold text-white fs-2qx pb-5 pb-md-10">
-                        Welcome to Subscribers </h1>
+                        Welcome to Subscribers</h1>
                     <p class="d-none d-lg-block fw-semibold fs-2 text-white">
                         Join us and start your jurney in the number one<br>
                         site in the world
 
                     </p>
-                </div>
-                <div class="d-none d-lg-block d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url({{ URL::to('assets/media/illustrations/dozzy-1/17.png') }})">
                 </div>
             </div>
         </div>
@@ -32,10 +32,6 @@
                                 </a>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-light-primary fw-bold w-100 mb-10">
-                            <img alt="Logo" src="{{ URL::to('assets/media/svg/brand-logos/google-icon.svg') }}" class="h-20px me-3">
-                            Sign in with Google
-                        </button>
                         <div class="d-flex align-items-center mb-10">
                             <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                             <span class="fw-semibold text-gray-400 fs-7 mx-2">OR</span>

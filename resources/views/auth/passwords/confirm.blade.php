@@ -3,8 +3,8 @@
 <div class="d-flex flex-column flex-root" id="kt_app_root">
     <div class="d-flex flex-column flex-column-fluid">
         <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
-            <a href="{{ route('home') }}" class="pt-lg-20 mb-12">
-                <img alt="Logo" src="{{ URL::to('assets/media/logos/logo.png') }}" class="theme-light-show h-40px h-lg-50px">
+            <a href="{{ url('/') }}" class="pt-lg-20 mb-12">
+                <img alt="Logo" src="{{ URL::to('frontend/assets/img/inner-banner/nara-logo-2022.png') }}" class="theme-light-show h-70px h-lg-80px">
             </a>
             <h1 class="fw-bold fs-2qx text-gray-800 mb-7">Password is changed</h1>
             <div class="fw-semibold fs-3 text-muted mb-15">
