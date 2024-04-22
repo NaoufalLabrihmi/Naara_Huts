@@ -191,32 +191,7 @@
 
                     </div>
 
-                    <div class="room-details-review">
-                        <h2>Clients Review and Retting's</h2>
-                        <div class="review-ratting">
-                            <h3>Your retting: </h3>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                        </div>
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" cols="30" rows="8" required data-error="Write your message" placeholder="Write your review here.... "></textarea>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-12 col-md-12">
-                                    <button type="submit" class="default-btn btn-bg-three">
-                                        Submit Review
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
