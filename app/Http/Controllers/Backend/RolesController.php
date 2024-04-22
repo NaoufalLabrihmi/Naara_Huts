@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use PhpParser\Node\Expr\FuncCall;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Laravel\Facades\Image;
 
 class RolesController extends Controller
 {
@@ -14,10 +18,12 @@ class RolesController extends Controller
         $roles = Role::get();
         return view('backend.roles.index', compact('roles'));
     }
+
     public function Create()
     {
         return view('backend.roles.create');
     }
+
 
     public function Store(Request $request)
     {
@@ -87,5 +93,125 @@ class RolesController extends Controller
                 'alert-type' => 'error'
             );
         }
+    }
+
+
+    public function UsersIndex()
+    {
+        $users = User::get();
+
+        return view('backend.users.index', compact('users'));
+    }
+    public function UsersCreate()
+    {
+        $roles = Role::get();
+        return view('backend.users.add', compact('roles'));
+    }
+
+    public function StoreUser(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_images/'), $filename);
+            $save_url = $filename;
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role_id' => $request->role,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'photo' => $save_url,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'User Data Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('users.list')->with($notification);
+    }
+
+    public function EditUser($id)
+    {
+        $user = User::findOrFail($id);
+        $role = Role::get();
+        return view('backend.users.edit_user', compact('user', 'role'));
+    }
+
+    public function UpdateUser(Request $request)
+    {
+
+        $user_id = $request->id;
+        $user = User::find($user_id);
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'), $filename);
+            $save_url = $filename;
+            // Delete the old image file if it exists
+            if ($user->photo && file_exists(public_path('upload/user_images/' . $user->photo))) {
+                unlink(public_path('upload/user_images/' . $user->photo));
+            }
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role_id' => $request->role,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'password' => Hash::make($request->password),
+                'photo' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+        } else {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role_id' => $request->role,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'password' => Hash::make($request->password),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'User Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('users.list')->with($notification);
+    }
+
+
+    public function DeleteUser($id)
+    {
+        $item = User::findOrFail($id);
+        $img = 'upload/user_images/' . $item->photo;
+        unlink($img);
+        $item->delete();
+
+        $notification = array(
+            'message' => 'User Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('users.list')->with($notification);
+    }
+
+    public function DeleteRole($id)
+    {
+        $item = Role::findOrFail($id);
+        $item->delete();
+        $notification = array(
+            'message' => 'Role Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('roles.index')->with($notification);
     }
 }
