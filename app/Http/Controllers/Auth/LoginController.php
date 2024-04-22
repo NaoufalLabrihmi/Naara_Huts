@@ -38,7 +38,7 @@ class LoginController extends Controller
 
             if (Auth::attempt($credentials, $request->remember)) {
                 $user = Auth::user();
-                $url = ($user->role === 'admin') ? '/admin/dashboard' : '/dashboard';
+                $url = ($user->role === 'admin') ? '/admin/dashboard' : '/user/booking';
 
                 return response()->json([
                     'response_code' => '200',
