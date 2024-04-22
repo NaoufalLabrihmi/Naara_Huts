@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('huts', function (Blueprint $table) {
             $table->id();
-            $table->integer('huttype_id');
+            $table->unsignedBigInteger('huttype_id');
             $table->string('total_adult')->nullable();
             $table->string('total_child')->nullable();
             $table->string('hut_capacity')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
+            $table->foreign('huttype_id')->references('id')->on('hut_types')->onDelete('cascade');
         });
     }
 
