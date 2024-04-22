@@ -15,5 +15,6 @@ return [
         'gallery' => 'Manage Gallery page',
         'contact' => 'Contact Message Page',
         'roles' => 'Manage Roles and Permissions',
+        'users' => "Manage Users and assign to them roles",
     ]
 ];
