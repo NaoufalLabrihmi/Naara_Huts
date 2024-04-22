@@ -16,16 +16,13 @@ $profileData = App\Models\User::find($id);
             <ul>
 
                 <li>
-                    <a href="{{ route('dashboard') }}">User Dashboard</a>
+                    <a href="{{ route('user.booking') }}">User Dashboard </a>
                 </li>
                 <li>
                     <a href="{{ route('user.profile') }}">User Profile </a>
                 </li>
                 <li>
                     <a href="{{ route('user.change.password') }}">Change Password</a>
-                </li>
-                <li>
-                    <a href="{{ route('user.booking') }}">Booking Details </a>
                 </li>
                 <li>
                     <a href="{{ route('user.logout') }}">Logout </a>
