@@ -41,7 +41,7 @@
                         @foreach ($users as $key=> $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td><img src="{{ asset('upload/user_images/'.$item->photo) }}" alt="" style="width:70px; height:40px;"></td>
+                            <td><img src="{{ (!empty($item->photo))?asset('upload/user_images/'.$item->photo):asset('upload/no_image.png') }}" alt="" style="width:70px; height:40px;"></td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->roles->name }}</td>

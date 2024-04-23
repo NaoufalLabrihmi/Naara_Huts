@@ -193,8 +193,10 @@ class RolesController extends Controller
     public function DeleteUser($id)
     {
         $item = User::findOrFail($id);
-        $img = 'upload/user_images/' . $item->photo;
-        unlink($img);
+        if ($item->photo && is_file(public_path('upload/user_images/' . $item->photo))) {
+            $img = public_path('upload/user_images/' . $item->photo);
+            unlink($img);
+        }
         $item->delete();
 
         $notification = array(

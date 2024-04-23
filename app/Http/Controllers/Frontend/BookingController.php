@@ -76,7 +76,7 @@ class BookingController extends Controller
     public function CheckoutStore(Request $request)
     {
 
-        $user = User::where('role', 'admin')->get();
+        $user = User::where('role_id', 1)->get();
 
         $this->validate($request, [
             'name' => 'required',
