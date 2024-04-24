@@ -25,8 +25,8 @@ class BookController extends Controller
 
         if ($request->hasFile('image')) {
             // Handle new image upload
-            $image = $request->file('image'); // Get the image file from the request
-            $save_url = $this->handleImage($image); // Pass the image file to handleImage function
+            $image = $request->file('image');
+            $save_url = $this->handleImage($image);
 
             // Delete the old image file if it exists
             if ($team->image && file_exists(public_path($team->image))) {

@@ -74,7 +74,7 @@
             </ul>
         </li>
         @endcan
-
+        @can('users')
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i></div>
@@ -85,7 +85,7 @@
                 <li> <a href="{{ route('add.hut.list') }}"><i class='bx bx-radio-circle'></i>Add User </a></li>
             </ul>
         </li>
-
+        @endcan
         @can('hutlist')
         <li>
             <a class="has-arrow" href="javascript:;">

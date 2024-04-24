@@ -5,7 +5,7 @@
         <div class="d-flex flex-column flex-lg-row-auto bg-primary w-xl-600px positon-xl-relative">
             <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px ">
                 <div class="d-flex flex-row-fluid flex-column text-center p-5 p-lg-10 pt-lg-20" style="background-image: url({{ URL::to('frontend/assets/img/inner-banner/chloe_NOMADE_03.jpg') }})">
-                    <a href="" style="padding-top: 5rem !important;padding-bottom: 2rem">
+                    <a href="{{url('/')}}" style="padding-top: 5rem !important;padding-bottom: 2rem">
                         <img alt="Logo" src="{{ URL::to('frontend/assets/img/inner-banner/nara-logo-2022.png') }}" class="theme-light-show h-70px h-lg-80px">
                     </a>
                     <h1 class="d-none d-lg-block fw-bold text-white fs-2qx pb-5 pb-md-10">

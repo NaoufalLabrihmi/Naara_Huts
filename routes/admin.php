@@ -143,8 +143,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/roles/edit/{id}', 'Edit')->name('roles.edit');
         Route::post('/roles/update/{id}', 'Update')->name('roles.update');
         Route::get('/delete/role/{id}', 'DeleteRole')->name('delete.roles');
+    });
 
-
+    Route::controller(RolesController::class)->middleware('can:users')->group(function () {
         //users manage root
         Route::get('/users', 'UsersIndex')->name('users.list');
         Route::get('/users/create', 'UsersCreate')->name('add.users');

@@ -39,7 +39,7 @@ class GalleryController extends Controller
                 'photo_name' => $save_url,
                 'created_at' => Carbon::now(),
             ]);
-        } //  end foreach
+        }
 
         $notification = array(
             'message' => 'Gallery Inserted Successfully',
