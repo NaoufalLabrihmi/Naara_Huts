@@ -188,7 +188,7 @@
                         </table>
                         @else
                         <div class="alert alert-danger text-center">
-                            Not Found Assign Room
+                            Not Found Assign Hut
                         </div>
                         @endif
                     </div>
