@@ -23,7 +23,7 @@ Ce projet a été développé en utilisant les technologies de pointe suivantes 
 
 - [Cahier des Charges](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Docs/filRouge%20cahier%20de%20charge.pdf)
 - [Diagrammes](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Diagrammes/FillrougeDG.pdf)
-- [Figma]([https://www.figma.com/file/ajAuCPrZLdP64vzQuDf0Bx/FilRouge?node-id=0%3A1](https://www.figma.com/file/bXOxkglq3G0SnbgNaRjhQJ/filrg?type=design&node-id=0-1&mode=design&t=8qRoNd4KwZ5KiACP-0))
+- [Figma](https://www.figma.com/file/bXOxkglq3G0SnbgNaRjhQJ/filrg?type=design&node-id=0-1&mode=design&t=8qRoNd4KwZ5KiACP-0)
 - [License](LICENSE.md)
 
 ## Dashboard
