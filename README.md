@@ -1,39 +1,39 @@
-# Naara - Plateforme de Réservation de Huttes - Projet FilRouge
+# Naara - Hut Booking Platform - Red Thread Project
 
-Naara est une plateforme web innovante permettant aux utilisateurs de réserver facilement des huttes uniques dans des destinations de rêve. Avec une interface intuitive et des fonctionnalités avancées, Naara simplifie le processus de réservation tout en offrant une expérience utilisateur exceptionnelle.
+Naara is an innovative web platform that allows users to easily book unique huts in dream destinations. With an intuitive interface and advanced features, Naara simplifies the booking process while offering an exceptional user experience.
 
-Ce projet a été développé en utilisant les technologies de pointe suivantes :
+This project was developed using the following cutting-edge technologies:
 
-- **Laravel** : Framework PHP pour le développement web robuste et évolutif.
-- **JavaScript** : Langage de programmation côté client pour l'interactivité et la dynamique.
-- **MySQL** : Système de gestion de base de données relationnelle pour le stockage des données.
-- **Bootstrap** : Framework CSS pour la création d'interfaces utilisateur réactives et esthétiques.
+- **Laravel**: PHP framework for robust and scalable web development.
+- **JavaScript**: Client-side programming language for interactivity and dynamics.
+- **MySQL**: Relational database management system for data storage.
+- **Bootstrap**: CSS framework for creating responsive and aesthetic user interfaces.
 
-## Fonctionnalités Clés
+## Key Features
 
-- **Réservation en Ligne :** Permet aux utilisateurs de réserver des huttes en ligne de manière simple et pratique.
-- **Paiement Sécurisé :** Intègre un système de paiement sécurisé pour des transactions en toute confiance.
-- **Paramétrage du Système de Messagerie :** Permet aux utilisateurs de communiquer facilement avec les propriétaires des huttes.
-- **Gestion des Utilisateurs et des Rôles :** Offre un système de gestion des utilisateurs avec différents niveaux d'accès.
-- **Système de Remise Mathématique :** Permet de calculer et d'appliquer des remises selon des critères définis.
-- **Gestion des Réservations par Nuit :** Gère les réservations en fonction du nombre de nuits souhaitées par les utilisateurs.
-- **Analytique Avancée :** Fournit des analyses approfondies pour mieux comprendre les tendances et les comportements des utilisateurs.
+- **Online Booking:** Allows users to book huts online in a simple and convenient way.
+- **Secure Payment:** Integrates a secure payment system for confident transactions.
+- **Messaging System Configuration:** Enables users to easily communicate with hut owners.
+- **User and Role Management:** Provides a user management system with different access levels.
+- **Mathematical Discount System:** Allows calculation and application of discounts based on defined criteria.
+- **Nightly Booking Management:** Manages reservations based on the number of nights requested by users.
+- **Advanced Analytics:** Provides in-depth analysis to better understand user trends and behaviors.
 
-## Table des Matières
+## Table of Contents
 
-- [Cahier des Charges](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Docs/filRouge%20cahier%20de%20charge.pdf)
-- [Diagrammes](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Diagrammes/FillrougeDG.pdf)
+- [Specifications](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Docs/filRouge%20cahier%20de%20charge.pdf)
+- [Diagrams](https://github.com/Youcode-Classe-E-2023-2024/NaoufalLabrihmi_FIL_ROUGE/blob/main/Cahier%20des%20charges%20Et%20Diagrammes/Diagrammes/FillrougeDG.pdf)
 - [Figma](https://www.figma.com/file/bXOxkglq3G0SnbgNaRjhQJ/filrg?type=design&node-id=0-1&mode=design&t=8qRoNd4KwZ5KiACP-0)
 - [License](LICENSE.md)
 
 ## Dashboard
 
-Le dashboard offre des statistiques détaillées pour les administrateurs et les utilisateurs disposant des autorisations appropriées.
+The dashboard provides detailed statistics for administrators and users with appropriate permissions.
 
-## Système de Création de Huttes
+## Hut Creation System
 
-Le système de création de huttes permet d'associer chaque hutte à un type spécifique et à un numéro unique, facilitant ainsi la gestion et la réservation des hébergements.
+The hut creation system allows each hut to be associated with a specific type and unique number, thus facilitating accommodation management and booking.
 
 ---
-**Auteur :** Naoufal Labrihmi  
-**Date :** 24/02/2024
+**Author:** Naoufal Labrihmi  
+**Date:** 24/02/2024
